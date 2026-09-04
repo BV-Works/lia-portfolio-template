@@ -1,17 +1,18 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { cn } from '@/lib/utils';
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
   const navLinks = [
-    { name: 'Work', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
+    { name: "Filmes", path: "/filmes" },
+    { name: "Otros Proyectos", path: "/otros-proyectos" },
+    { name: "Bio", path: "/bio" },
+    { name: "Contacto", path: "/contacto" },
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -23,8 +24,8 @@ const Navbar = () => {
         <div className="px-6 md:px-12 lg:px-16 py-4">
           <div className="flex items-center justify-between text-foreground">
             {/* Logo - Clash Display font, bold */}
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="font-logo text-xl font-semibold tracking-tight hover:opacity-70 transition-opacity"
               onClick={closeMenu}
             >
@@ -39,7 +40,9 @@ const Navbar = () => {
                   to={link.path}
                   className={cn(
                     "font-sans text-base font-medium transition-opacity hover:opacity-60",
-                    location.pathname === link.path ? "opacity-60" : "opacity-100"
+                    location.pathname === link.path
+                      ? "opacity-60"
+                      : "opacity-100",
                   )}
                 >
                   {link.name}
@@ -48,12 +51,16 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Hamburger Menu */}
-            <button 
+            <button
               className="md:hidden p-2 hover:opacity-60 transition-opacity"
               onClick={toggleMenu}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
-              {isMenuOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
+              {isMenuOpen ? (
+                <X size={24} strokeWidth={1.5} />
+              ) : (
+                <Menu size={24} strokeWidth={1.5} />
+              )}
             </button>
           </div>
         </div>
@@ -82,7 +89,9 @@ const Navbar = () => {
                     onClick={closeMenu}
                     className={cn(
                       "font-serif text-4xl font-semibold transition-opacity hover:opacity-60",
-                      location.pathname === link.path ? "opacity-60" : "opacity-100"
+                      location.pathname === link.path
+                        ? "opacity-60"
+                        : "opacity-100",
                     )}
                   >
                     {link.name}

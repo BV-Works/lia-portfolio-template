@@ -1,21 +1,25 @@
-import { useState } from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import AnimatedSection from '@/components/AnimatedSection';
+import { useState } from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import AnimatedSection from "@/components/AnimatedSection";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    budget: '',
-    message: ''
+    name: "",
+    email: "",
+    company: "",
+    budget: "",
+    message: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -23,14 +27,14 @@ const Contact = () => {
     e.preventDefault();
     // Handle form submission
     console.log(formData);
-    alert('Message sent! I will get back to you soon.');
-    setFormData({ name: '', email: '', company: '', budget: '', message: '' });
+    alert("Message sent! I will get back to you soon.");
+    setFormData({ name: "", email: "", company: "", budget: "", message: "" });
   };
 
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-12 md:pt-40 md:pb-16">
         <div className="px-6 md:px-12 lg:px-16">
@@ -39,7 +43,8 @@ const Contact = () => {
               Let's work together
             </h1>
             <p className="font-sans text-base md:text-lg text-muted-foreground mt-6 max-w-2xl">
-              Have a project in mind? Fill out the form below and I'll get back to you within 24 hours.
+              Have a project in mind? Fill out the form below and I'll get back
+              to you within 24 hours.
             </p>
           </AnimatedSection>
         </div>
@@ -55,7 +60,10 @@ const Contact = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Name */}
                   <div>
-                    <label htmlFor="name" className="block font-sans text-xs font-semibold uppercase tracking-wider mb-3">
+                    <label
+                      htmlFor="name"
+                      className="block font-sans text-xs font-semibold uppercase tracking-wider mb-3"
+                    >
                       Name *
                     </label>
                     <input
@@ -72,7 +80,10 @@ const Contact = () => {
 
                   {/* Email */}
                   <div>
-                    <label htmlFor="email" className="block font-sans text-xs font-semibold uppercase tracking-wider mb-3">
+                    <label
+                      htmlFor="email"
+                      className="block font-sans text-xs font-semibold uppercase tracking-wider mb-3"
+                    >
                       Email *
                     </label>
                     <input
@@ -91,7 +102,10 @@ const Contact = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Company */}
                   <div>
-                    <label htmlFor="company" className="block font-sans text-xs font-semibold uppercase tracking-wider mb-3">
+                    <label
+                      htmlFor="company"
+                      className="block font-sans text-xs font-semibold uppercase tracking-wider mb-3"
+                    >
                       Company
                     </label>
                     <input
@@ -107,7 +121,10 @@ const Contact = () => {
 
                   {/* Budget */}
                   <div>
-                    <label htmlFor="budget" className="block font-sans text-xs font-semibold uppercase tracking-wider mb-3">
+                    <label
+                      htmlFor="budget"
+                      className="block font-sans text-xs font-semibold uppercase tracking-wider mb-3"
+                    >
                       Budget
                     </label>
                     <select
@@ -128,7 +145,10 @@ const Contact = () => {
 
                 {/* Message */}
                 <div>
-                  <label htmlFor="message" className="block font-sans text-xs font-semibold uppercase tracking-wider mb-3">
+                  <label
+                    htmlFor="message"
+                    className="block font-sans text-xs font-semibold uppercase tracking-wider mb-3"
+                  >
                     Tell me about your project *
                   </label>
                   <textarea
@@ -159,8 +179,10 @@ const Contact = () => {
               <div className="lg:pl-8 space-y-10">
                 {/* Email */}
                 <div>
-                  <h3 className="font-sans text-xs font-semibold uppercase tracking-wider mb-3">Email</h3>
-                  <a 
+                  <h3 className="font-sans text-xs font-semibold uppercase tracking-wider mb-3">
+                    Email
+                  </h3>
+                  <a
                     href="mailto:hello@julienmoreau.design"
                     className="font-sans text-base text-foreground hover:opacity-60 transition-opacity"
                   >
@@ -170,26 +192,33 @@ const Contact = () => {
 
                 {/* Location */}
                 <div>
-                  <h3 className="font-sans text-xs font-semibold uppercase tracking-wider mb-3">Location</h3>
+                  <h3 className="font-sans text-xs font-semibold uppercase tracking-wider mb-3">
+                    Location
+                  </h3>
                   <p className="font-sans text-base text-muted-foreground">
-                    Paris, France<br />
+                    Paris, France
+                    <br />
                     Available for remote work worldwide
                   </p>
                 </div>
 
                 {/* Social */}
                 <div>
-                  <h3 className="font-sans text-xs font-semibold uppercase tracking-wider mb-3">Social</h3>
+                  <h3 className="font-sans text-xs font-semibold uppercase tracking-wider mb-3">
+                    Social
+                  </h3>
                   <div className="flex flex-col gap-2">
-                    {['LinkedIn', 'Twitter', 'Instagram', 'Dribbble'].map((social) => (
-                      <a 
-                        key={social}
-                        href="#"
-                        className="font-sans text-base text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        {social}
-                      </a>
-                    ))}
+                    {["LinkedIn", "Twitter", "Instagram", "Dribbble"].map(
+                      (social) => (
+                        <a
+                          key={social}
+                          href="#"
+                          className="font-sans text-base text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                          {social}
+                        </a>
+                      ),
+                    )}
                   </div>
                 </div>
 

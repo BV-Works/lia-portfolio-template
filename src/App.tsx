@@ -4,11 +4,15 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+
 import Index from "./pages/Index";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+import Filmes from "./pages/Filmes";
+import OtrosProyectos from "./pages/OtrosProyectos";
+import Bio from "./pages/About";
+import Contacto from "./pages/Contact";
 import ProjectDetail from "./pages/ProjectDetail";
 import NotFound from "./pages/NotFound";
+
 import ScrollToTop from "./components/ScrollToTop";
 import PageTransition from "./components/PageTransition";
 
@@ -16,15 +20,79 @@ const queryClient = new QueryClient();
 
 const AnimatedRoutes = () => {
   const location = useLocation();
-  
+
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageTransition><Index /></PageTransition>} />
-        <Route path="/about" element={<PageTransition><About /></PageTransition>} />
-        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-        <Route path="/work/:slug" element={<PageTransition><ProjectDetail /></PageTransition>} />
-        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+        {/* Homepage */}
+        <Route
+          path="/"
+          element={
+            <PageTransition>
+              <Index />
+            </PageTransition>
+          }
+        />
+
+        {/* Filmes */}
+        <Route
+          path="/filmes"
+          element={
+            <PageTransition>
+              <Filmes />
+            </PageTransition>
+          }
+        />
+
+        {/* Otros proyectos */}
+        <Route
+          path="/otros-proyectos"
+          element={
+            <PageTransition>
+              <OtrosProyectos />
+            </PageTransition>
+          }
+        />
+
+        {/* Bio */}
+        <Route
+          path="/bio"
+          element={
+            <PageTransition>
+              <Bio />
+            </PageTransition>
+          }
+        />
+
+        {/* Contacto */}
+        <Route
+          path="/contacto"
+          element={
+            <PageTransition>
+              <Contacto />
+            </PageTransition>
+          }
+        />
+
+        {/* Project detail */}
+        <Route
+          path="/work/:slug"
+          element={
+            <PageTransition>
+              <ProjectDetail />
+            </PageTransition>
+          }
+        />
+
+        {/* 404 */}
+        <Route
+          path="*"
+          element={
+            <PageTransition>
+              <NotFound />
+            </PageTransition>
+          }
+        />
       </Routes>
     </AnimatePresence>
   );
@@ -35,6 +103,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+
       <BrowserRouter>
         <ScrollToTop />
         <AnimatedRoutes />
