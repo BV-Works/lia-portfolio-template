@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/lia-portfolio-template/",
+  base: mode === "github-pages" ? "/lia-portfolio-template/" : "/",
 
   server: {
     host: "::",
@@ -22,3 +22,4 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
+
