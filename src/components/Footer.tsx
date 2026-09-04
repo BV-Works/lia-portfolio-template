@@ -1,127 +1,178 @@
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, ExternalLink } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
+  const linkClasses =
+    "font-sans text-sm text-background/70 transition-colors hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background focus-visible:ring-offset-2 focus-visible:ring-offset-foreground";
+
   return (
-    <footer className="bg-foreground text-background relative overflow-hidden">
-      {/* Top Section - Links */}
-      <div className="px-6 md:px-12 lg:px-16 pt-12 md:pt-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+    <footer className="relative overflow-hidden bg-foreground text-background">
+      {/* Footer navigation */}
+      <div className="px-6 pt-12 md:px-12 md:pt-16 lg:px-16">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-12">
           {/* Contact */}
           <div>
-            <h3 className="font-sans text-xs font-semibold uppercase tracking-wider mb-3">
-              Contact
-            </h3>
-            <a
-              href="mailto:hello@julienmoreau.design"
-              className="font-sans text-sm text-background/70 hover:text-background transition-colors"
-            >
-              hello@julienmoreau.design
+            <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider">
+              Contacto
+            </h2>
+
+            <a href="mailto:lia@flugilde.es" className={linkClasses}>
+              lia@flugilde.es
             </a>
           </div>
 
           {/* Social */}
           <div>
-            <h3 className="font-sans text-xs font-semibold uppercase tracking-wider mb-3">
+            <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider">
               Social
-            </h3>
-            <div className="space-y-1">
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block font-sans text-sm text-background/70 hover:text-background transition-colors"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block font-sans text-sm text-background/70 hover:text-background transition-colors"
-              >
-                Twitter
-              </a>
-            </div>
+            </h2>
+
+            <nav aria-label="Redes sociales">
+              <ul className="space-y-1">
+                <li>
+                  <a
+                    href="https://www.instagram.com/lachicacheca_/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={linkClasses}
+                  >
+                    Instagram
+                    <span className="sr-only">
+                      {" "}
+                      (abre en una nueva pestaña)
+                    </span>
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/lía-fernández-lugilde-156aaa130/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={linkClasses}
+                  >
+                    LinkedIn
+                    <span className="sr-only">
+                      {" "}
+                      (abre en una nueva pestaña)
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
 
           {/* Work */}
           <div>
-            <h3 className="font-sans text-xs font-semibold uppercase tracking-wider mb-3">
-              Work
-            </h3>
+            <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider">
+              Trabajos
+            </h2>
+
             <a
-              href="https://dribbble.com"
+              href="https://vimeo.com/lialugilde"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-sans text-sm text-background/70 hover:text-background transition-colors"
+              className={linkClasses}
             >
-              View on Dribbble
+              Vimeo
+              <span className="sr-only"> (abre en una nueva pestaña)</span>
             </a>
           </div>
 
-          {/* Newsletter */}
+          {/* Newsletter
           <div>
-            <div className="flex items-center border-b border-background/30 pb-2">
+            <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider">
+              Newsletter
+            </h2>
+
+            <form
+              action="#"
+              method="post"
+              className="flex items-center border-b border-background/30 pb-2"
+            >
+              <label htmlFor="footer-email" className="sr-only">
+                Tu dirección de email
+              </label>
+
               <input
+                id="footer-email"
+                name="email"
                 type="email"
-                placeholder="Stay up to date"
-                className="bg-transparent font-sans text-sm text-background placeholder:text-background/50 outline-none flex-1"
+                autoComplete="email"
+                placeholder="Tu email"
+                required
+                className="min-w-0 flex-1 bg-transparent font-sans text-sm text-background placeholder:text-background/50 outline-none focus-visible:ring-0"
               />
-              <button className="text-background/70 hover:text-background transition-colors">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
+
+              <button
+                type="submit"
+                aria-label="Suscribirse al newsletter"
+                className="ml-3 shrink-0 text-background/70 transition-colors hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
+              >
+                <ArrowUp
+                  size={20}
+                  strokeWidth={1.5}
+                  className="rotate-45"
+                  aria-hidden="true"
+                />
               </button>
-            </div>
-          </div>
+            </form>
+          </div> */}
         </div>
       </div>
 
-      {/* Giant Name with Back to Top Button */}
-      <div className="px-6 md:px-12 lg:px-16 pt-8 md:pt-12 relative">
+      {/* Brand / Back to top */}
+      <div className="relative px-6 pt-10 md:px-12 md:pt-12 lg:px-16">
         <div className="flex items-end justify-between">
-          <h2
-            className="font-logo font-bold text-background leading-none select-none"
+          <p
+            aria-hidden="true"
+            className="select-none font-logo font-bold leading-none text-background"
             style={{
               fontSize: "clamp(4rem, 20vw, 22rem)",
               letterSpacing: "-0.02em",
               lineHeight: "0.85",
             }}
           >
-            JULIEN.
-          </h2>
+            LIA.
+          </p>
 
-          {/* Back to Top Button - Hidden on tablet and mobile */}
           <button
+            type="button"
             onClick={scrollToTop}
-            className="hidden lg:flex mb-8 w-16 h-16 bg-background text-foreground items-center justify-center hover:bg-background/90 transition-colors shrink-0"
-            aria-label="Back to top"
+            aria-label="Volver al principio de la página"
+            className="mb-2 flex h-12 w-12 shrink-0 items-center justify-center bg-background text-foreground transition-colors hover:bg-background/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background focus-visible:ring-offset-2 focus-visible:ring-offset-foreground md:mb-6 md:h-14 md:w-14 lg:mb-8 lg:h-16 lg:w-16"
           >
-            <ArrowUp size={24} strokeWidth={2} />
+            <ArrowUp size={24} strokeWidth={1.75} aria-hidden="true" />
           </button>
         </div>
       </div>
 
-      {/* Bottom Section */}
-      <div className="px-6 md:px-12 lg:px-16 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      {/* Footer bottom */}
+      <div className="flex flex-col gap-3 px-6 py-6 md:flex-row md:items-center md:justify-between md:px-12 lg:px-16">
         <p className="font-sans text-xs text-background/50">
-          © Julien Moreau {currentYear}.
+          © {currentYear} Lía Fernández Lugilde.
         </p>
+
         <p className="font-sans text-xs text-background/50">
-          Website design by Julien Moreau
+          Website design by{" "}
+          <a
+            href="https://bajovigilancia.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 transition-colors hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
+          >
+            Bajo Vigilancia
+            <span className="sr-only"> (abre en una nueva pestaña)</span>
+          </a>
+          .
         </p>
       </div>
     </footer>

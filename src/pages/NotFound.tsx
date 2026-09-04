@@ -1,29 +1,31 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-
+import { Link } from "react-router-dom";
 const NotFound = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname,
-    );
-  }, [location.pathname]);
-
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted">
+    <main className="flex min-h-screen items-center justify-center bg-background px-6 text-foreground">
+      {" "}
       <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-muted-foreground">
-          Oops! Page not found
-        </p>
-        <a href="/" className="text-primary underline hover:text-primary/90">
-          Return to Home
-        </a>
-      </div>
-    </div>
+        {" "}
+        <p className="mb-6 font-sans text-sm uppercase tracking-[0.15em] text-muted-foreground">
+          {" "}
+          Error{" "}
+        </p>{" "}
+        <h1 className="font-serif text-8xl font-normal leading-none md:text-9xl">
+          {" "}
+          404{" "}
+        </h1>{" "}
+        <p className="mt-8 font-sans text-lg text-muted-foreground">
+          {" "}
+          La página que buscas no existe.{" "}
+        </p>{" "}
+        <Link
+          to="/"
+          className=" mt-8 inline-flex items-center gap-2 font-sans text-base underline underline-offset-4 transition-opacity duration-300 hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-4 "
+        >
+          {" "}
+          ← Volver al inicio{" "}
+        </Link>{" "}
+      </div>{" "}
+    </main>
   );
 };
-
 export default NotFound;
