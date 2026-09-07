@@ -11,7 +11,11 @@ const navLinks = [
   { name: "Contacto", path: "/contacto" },
 ];
 
-const Navbar = () => {
+interface NavbarProps {
+  overlay?: boolean;
+}
+
+const Navbar = ({ overlay = false }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
@@ -57,8 +61,9 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   // The header is transparent only when at the top
-  // and the mobile menu is closed.
-  const isTransparent = !isScrolled && !isMenuOpen;
+  // and the mobile menu is closed and the overlay is active.
+  const isTransparent =
+  overlay && !isScrolled && !isMenuOpen;
 
   return (
     <>

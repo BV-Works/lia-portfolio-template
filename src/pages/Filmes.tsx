@@ -38,6 +38,7 @@ const Filmes = () => {
                 description={project.listingDescription}
                 image={project.heroImage.publicId}
                 slug={project.slug}
+                type="filmes"
                 variant="half"
                 index={index}
               />

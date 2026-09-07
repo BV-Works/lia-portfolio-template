@@ -44,12 +44,32 @@ const AnimatedRoutes = () => {
           }
         />
 
+        {/* Detalle de película */}
+        <Route
+          path="/filmes/:slug"
+          element={
+            <PageTransition>
+              <ProjectDetail />
+            </PageTransition>
+          }
+        />
+
         {/* Otros proyectos */}
         <Route
           path="/otros-proyectos"
           element={
             <PageTransition>
               <OtrosProyectos />
+            </PageTransition>
+          }
+        />
+
+        {/* Detalle de otro proyecto */}
+        <Route
+          path="/otros-proyectos/:slug"
+          element={
+            <PageTransition>
+              <ProjectDetail />
             </PageTransition>
           }
         />
@@ -70,16 +90,6 @@ const AnimatedRoutes = () => {
           element={
             <PageTransition>
               <Contacto />
-            </PageTransition>
-          }
-        />
-
-        {/* Project detail */}
-        <Route
-          path="/work/:slug"
-          element={
-            <PageTransition>
-              <ProjectDetail />
             </PageTransition>
           }
         />
@@ -113,3 +123,4 @@ const App = () => (
 );
 
 export default App;
+

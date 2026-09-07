@@ -8,7 +8,7 @@ El objetivo no es crear un portfolio genérico, sino mantener una experiencia **
 
 ---
 
-## Project Profile
+# Project Profile
 
 **Name:** Lía Lugilde
 
@@ -16,31 +16,31 @@ El objetivo no es crear un portfolio genérico, sino mantener una experiencia **
 
 **Location:** Asturias, Spain
 
-### Focus
+## Focus
 
-- Documentary filmmaking
-- Fiction filmmaking
-- Audiovisual creation
-- Cinematography
-- Editing
-- Sound / visual storytelling
+* Documentary filmmaking
+* Fiction filmmaking
+* Audiovisual creation
+* Cinematography
+* Editing
+* Sound / visual storytelling
 
-### Positioning
+## Positioning
 
-- Author-driven
-- Cinematic
-- Documentary and fiction
-- Human and observational
-- Independent audiovisual creator
+* Author-driven
+* Cinematic
+* Documentary and fiction
+* Human and observational
+* Independent audiovisual creator
 
-### Tone of voice
+## Tone of voice
 
-- Human
-- Direct
-- Intimate
-- Editorial
-- Cinematic
-- Non-corporate
+* Human
+* Direct
+* Intimate
+* Editorial
+* Cinematic
+* Non-corporate
 
 ---
 
@@ -48,31 +48,31 @@ El objetivo no es crear un portfolio genérico, sino mantener una experiencia **
 
 ## Layout
 
-- Max-width, centered content where appropriate
-- Generous white space
-- Strong vertical rhythm
-- Clear section separation through spacing and lines
-- Large editorial compositions
-- Images are a primary part of the visual experience
-- Responsive behavior must preserve the hierarchy of the reference design
-- Avoid unnecessary application-like UI patterns
+* Max-width, centered content where appropriate
+* Generous white space
+* Strong vertical rhythm
+* Clear section separation through spacing and lines
+* Large editorial compositions
+* Images are a primary part of the visual experience
+* Responsive behavior preserves the hierarchy of the reference design
+* Avoid unnecessary application-like UI patterns
 
 ## Typography
 
-- Editorial serif for large expressive headlines
-- Clean sans-serif for metadata, navigation and supporting information
-- Large display typography for hero and section headings
-- Tight leading on large headlines
-- Calm, readable body text
-- Editorial rather than corporate character
+* Editorial serif for large expressive headlines
+* Clean sans-serif for metadata, navigation and supporting information
+* Large display typography for hero and section headings
+* Tight leading on large headlines
+* Calm, readable body text
+* Editorial rather than corporate character
 
 ## Color
 
-- Predominantly black and white
-- High-contrast sections
-- Project imagery provides the main visual color
-- Minimal decorative UI
-- Typography, spacing and imagery carry the visual experience
+* Predominantly black and white
+* High-contrast sections
+* Project imagery provides the main visual color
+* Minimal decorative UI
+* Typography, spacing and imagery carry the visual experience
 
 ---
 
@@ -84,26 +84,55 @@ The portfolio uses a floating editorial navigation system inspired by the refere
 
 ### Left
 
-- Lía Lugilde / wordmark
+* Lía Lugilde / wordmark
 
 ### Right
 
-- Filmes
-- Otros proyectos
-- Bio
-- Contacto
+* Filmes
+* Otros Proyectos
+* Bio
+* Contacto
 
 ## Behavior
 
-- Fixed while scrolling
-- Rounded pill container
-- Responsive
-- Navigation hierarchy preserved across desktop and mobile
-- Visual treatment adapts where necessary to the underlying content
-- Keyboard accessible
-- Visible `focus-visible` states
+* Fixed while scrolling
+* Transparent overlay treatment on pages with a visual hero
+* Solid background on pages without a hero
+* Becomes solid after scrolling on hero-based pages
+* Responsive
+* Desktop and mobile navigation share the same hierarchy
+* Mobile navigation uses a full-screen overlay
+* Navigation closes automatically when the route changes
+* Background scrolling is prevented while the mobile menu is open
+* Keyboard accessible
+* Visible `focus-visible` states
 
-The `Navbar` component is currently being reviewed as part of the final production-readiness pass.
+## Navbar variants
+
+The `Navbar` component accepts an optional overlay mode:
+
+```tsx
+<Navbar overlay />
+```
+
+This mode is used on pages where the navigation sits above a hero image:
+
+```text
+/
+├── /filmes/:slug
+└── /otros-proyectos/:slug
+```
+
+Pages without a hero use the default solid navigation:
+
+```text
+/filmes
+/otros-proyectos
+/bio
+/contacto
+```
+
+This prevents the navigation from becoming visually invisible when placed over a plain page background.
 
 ---
 
@@ -122,62 +151,119 @@ Current projects:
 
 1. **Saltar**
 
-   - Cortometraje documental — 18 min
+   * Cortometraje documental — 18 min
 
 2. **Los trazos que quedan de ti**
 
-   - Cortometraje documental — 24 min
+   * Cortometraje documental — 24 min
 
 3. **Breves anotaciones sobre una ruptura**
 
-   - Cortometraje de ficción — 9 min
+   * Cortometraje de ficción — 9 min
 
 ## Otros proyectos
 
 4. **Una mujer que conocí llamada Yudita**
 
-   - Cortometraje documental — 19 min
+   * Cortometraje documental — 19 min
 
 5. **Soledá**
 
-   - Cortometraje de ficción — 15 min
+   * Cortometraje de ficción — 15 min
 
 6. **In-migración**
 
-   - Cabecera para el festival MUSOC edición 2025
+   * Cabecera para el festival MUSOC edición 2025
 
 ---
 
 # ROUTING
 
-The current React Router architecture uses:
+The current React Router architecture uses semantic category-based project URLs:
 
 ```text
 /
+
 ├── /filmes
+├── /filmes/:slug
 ├── /otros-proyectos
+├── /otros-proyectos/:slug
 ├── /bio
 ├── /contacto
-└── /work/:slug
+└── *
 ```
 
 Routes:
 
-| Route              | Page                 | Purpose                    |
-| ------------------ | -------------------- | -------------------------- |
-| `/`                | `Index.tsx`          | Homepage / cinematic hero  |
-| `/filmes`          | `Filmes.tsx`         | Main films listing         |
-| `/otros-proyectos` | `OtrosProyectos.tsx` | Other audiovisual projects |
-| `/bio`             | `About.tsx`          | Biography                  |
-| `/contacto`        | `Contact.tsx`        | Contact                    |
-| `/work/:slug`      | `ProjectDetail.tsx`  | Individual project         |
-| `*`                | `NotFound.tsx`       | 404 page                   |
+| Route                    | Page                 | Purpose                    |
+| ------------------------ | -------------------- | -------------------------- |
+| `/`                      | `Index.tsx`          | Homepage / cinematic hero  |
+| `/filmes`                | `Filmes.tsx`         | Main films listing         |
+| `/filmes/:slug`          | `ProjectDetail.tsx`  | Individual film            |
+| `/otros-proyectos`       | `OtrosProyectos.tsx` | Other audiovisual projects |
+| `/otros-proyectos/:slug` | `ProjectDetail.tsx`  | Individual other project   |
+| `/bio`                   | `About.tsx`          | Biography                  |
+| `/contacto`              | `Contact.tsx`        | Contact                    |
+| `*`                      | `NotFound.tsx`       | 404 page                   |
 
-The project detail route is intentionally generic so the same component can render projects from both categories.
+The project detail page is intentionally shared between both project categories.
+
+The current URL structure keeps the project category visible in the URL while allowing the same `ProjectDetail` component to render both types of project.
+
+---
+
+# PROJECT NAVIGATION
+
+Project detail pages include a **Next Project** navigation element.
+
+The sequence is intentionally global rather than restricted to the current category.
+
+Current sequence:
+
+```text
+/filmes/saltar
+        ↓
+/filmes/los-trazos-que-quedan-de-ti
+        ↓
+/filmes/breves-anotaciones-sobre-una-ruptura
+        ↓
+/otros-proyectos/una-mujer-que-conoci-llamada-yudita
+        ↓
+/otros-proyectos/soleda
+        ↓
+/otros-proyectos/in-migracion
+        ↓
+/filmes/saltar
+```
+
+Navigation is circular.
+
+The destination URL is always generated from the destination project's own category, so crossing from `filmes` to `otros-proyectos` does not produce an incorrect route.
+
+The project helpers are centralized in:
+
+```text
+src/data/projects.ts
+```
+
+Relevant helpers include:
+
+```ts
+getProjectBySlug()
+getProjectsByCategory()
+getNextProject()
+getPreviousProject()
+```
 
 ---
 
 # PAGE 1 — HOME
+
+Route:
+
+```text
+/
+```
 
 The homepage is intentionally minimal and image-led.
 
@@ -186,26 +272,29 @@ The homepage is intentionally minimal and image-led.
 ```text
 Navbar
    ↓
-Full-screen hero
+Cinematic hero
    ↓
 Footer
 ```
 
-The hero displays the portfolio projects as a cinematic carousel.
+The current homepage hero uses **Saltar** as the featured project.
 
-Each slide contains:
+The architecture remains compatible with multiple featured projects and a future cinematic carousel, but the current design intentionally presents a single static hero.
 
-- Project image
-- Project type / duration
-- Project title
-- Project counter
-- Link to the corresponding project detail
+## Hero content
 
-The hero is implemented as the primary `<h1>` context of the homepage.
+The hero contains:
 
-## Image behavior
+* Project image
+* Project type / duration
+* Project title
+* Link to the corresponding project detail
 
-The homepage supports an optional dedicated image:
+The project title provides the primary `h1` context of the homepage.
+
+## Home image
+
+Projects can optionally define a dedicated homepage image:
 
 ```ts
 homeImage?: {
@@ -220,7 +309,7 @@ If no dedicated `homeImage` exists, the project automatically falls back to:
 heroImage
 ```
 
-This allows the homepage to work even when dedicated homepage assets have not yet been uploaded for every project.
+This allows the homepage to work even when dedicated homepage assets have not been uploaded for every project.
 
 ---
 
@@ -248,14 +337,17 @@ Displays the three main films:
 
 Each project listing includes:
 
-- Project image
-- Project title
-- Listing description
-- Link to the project detail page
+* Project image
+* Project title
+* Listing description
+* Link to the project detail page
 
 The listing uses the reusable `ProjectCard` component.
 
-The current layout uses a responsive two-column editorial grid on medium and larger screens and a single column on mobile.
+The current layout uses:
+
+* Single column on mobile
+* Two-column editorial grid on medium and larger screens
 
 ---
 
@@ -287,21 +379,27 @@ The same visual system and project-detail architecture are reused.
 
 # PAGE 4 — PROJECT DETAIL
 
-Every project opens through:
+Project detail pages use category-aware URLs:
 
 ```text
-/work/:slug
+/filmes/:slug
+/otros-proyectos/:slug
 ```
 
 Examples:
 
 ```text
-/work/saltar
-/work/los-trazos-que-quedan-de-ti
-/work/breves-anotaciones-sobre-una-ruptura
-/work/una-mujer-que-conoci-llamada-yudita
-/work/soleda
-/work/in-migracion
+/filmes/saltar
+
+/filmes/los-trazos-que-quedan-de-ti
+
+/filmes/breves-anotaciones-sobre-una-ruptura
+
+/otros-proyectos/una-mujer-que-conoci-llamada-yudita
+
+/otros-proyectos/soleda
+
+/otros-proyectos/in-migracion
 ```
 
 The detail page follows the established editorial composition:
@@ -309,7 +407,7 @@ The detail page follows the established editorial composition:
 ```text
 Project hero
       ↓
-Project title / metadata
+Project title
       ↓
 Poster + project information
       ↓
@@ -326,26 +424,48 @@ Not every project necessarily contains every section.
 
 ## Project Hero
 
-- Large hero image
-- Strong visual impact
-- Responsive Cloudinary delivery
-- High-priority image loading
-- Editorial presentation
+* Large hero image
+* Strong visual impact
+* Responsive Cloudinary delivery
+* High-priority image loading
+* Editorial presentation
+* Responsive behavior based on viewport aspect ratio
+
+### Hero responsive behavior
+
+On narrow or vertically oriented screens, the hero preserves the complete image:
+
+```text
+w-full
+h-auto
+object-contain
+```
+
+On sufficiently panoramic screens, the hero can occupy the viewport:
+
+```text
+h-screen
+object-cover
+```
+
+The transition is based on the viewport **aspect ratio** rather than solely on a conventional device-width breakpoint.
+
+This prevents panoramic cinematic frames from being unnecessarily cropped on tablets and vertically oriented displays.
 
 ## Project Information
 
 Depending on the project, the page can contain:
 
-- Project title
-- Type / duration
-- Synopsis
-- Credits
-- Screenings / awards
-- Funding
-- Production
-- External links
-- Trailer
-- Gallery
+* Project title
+* Type / duration
+* Synopsis
+* Credits
+* Screenings / awards
+* Funding
+* Production
+* External links
+* Trailer
+* Gallery
 
 The component renders sections conditionally according to the available project data.
 
@@ -378,6 +498,8 @@ Festivals, awards and screenings.
 
 Relevant external articles, interviews or project pages.
 
+External links open in a new browser tab and include appropriate accessibility context.
+
 ## Trailer
 
 Optional Vimeo or YouTube trailer.
@@ -393,9 +515,13 @@ Example:
 
 The project detail implementation converts supported Vimeo and YouTube URLs into the appropriate embed URL.
 
+Trailer iframes use lazy loading.
+
 ## Gallery
 
 Project stills served dynamically through Cloudinary.
+
+Gallery images are loaded lazily and use responsive image sources.
 
 ---
 
@@ -405,8 +531,8 @@ Some projects contain additional image groups.
 
 For example, **Saltar** includes:
 
-- Funding
-- Production
+* Funding
+* Production
 
 These are represented independently from the main gallery:
 
@@ -429,26 +555,75 @@ src/data/projects.ts
 
 The project model contains:
 
-- `id`
-- `slug`
-- `category`
-- `title`
-- `listingDescription`
-- `heroImage`
-- `poster`
-- `synopsis`
-- `credits`
-- `screenings`
-- `funding`
-- `production`
-- `links`
-- `trailer`
-- `gallery`
-- optional `homeImage`
+* `id`
+* `slug`
+* `category`
+* `title`
+* `listingDescription`
+* `heroImage`
+* `poster`
+* `synopsis`
+* `credits`
+* `screenings`
+* `funding`
+* `production`
+* `links`
+* `trailer`
+* `gallery`
+* optional `homeImage`
 
 The project data is intentionally separated from presentation logic.
 
 Components should consume structured project data rather than containing hardcoded project-specific content.
+
+## Current model
+
+```ts
+export interface ResponsiveImage {
+  publicId: string;
+  sizes?: string;
+}
+
+export interface ProjectLink {
+  label: string;
+  url: string;
+}
+
+export interface Project {
+  id: string;
+  slug: string;
+  category: "filmes" | "otros-proyectos";
+
+  title: string;
+  listingDescription: string;
+
+  heroImage: ResponsiveImage;
+  homeImage?: ResponsiveImage;
+  poster: ResponsiveImage;
+
+  synopsis: string;
+
+  credits: {
+    role: string;
+    people: string;
+  }[];
+
+  screenings: string[];
+
+  funding?: ResponsiveImage[];
+
+  production?: ResponsiveImage[];
+
+  links?: ProjectLink[];
+
+  trailer?: {
+    platform: "vimeo" | "youtube";
+    url: string;
+  };
+
+  gallery: ResponsiveImage[];
+}
+```
 
 ---
 
@@ -490,8 +665,11 @@ Naming follows a predictable convention:
 
 ```text
 hero-[project]
+
 cartel-[project]
+
 fotograma-1-[project]
+
 fotograma-2-[project]
 ```
 
@@ -499,6 +677,7 @@ Additional project-specific assets can follow the same pattern:
 
 ```text
 funding-saltar
+
 production-saltar
 ```
 
@@ -508,11 +687,34 @@ production-saltar
 
 The frontend generates optimized Cloudinary delivery URLs dynamically.
 
-Current transformations include:
+Current responsive delivery uses multiple widths and automatic quality/format transformations.
+
+Conceptually:
 
 ```text
-w_768
-w_1536
+publicId
+    ↓
+Cloudinary URL builder
+    ↓
+width / quality / format transformations
+    ↓
+optimized image
+```
+
+The frontend uses responsive `srcSet` generation where appropriate.
+
+Typical widths include:
+
+```text
+768
+1024
+1536
+1920
+```
+
+Cloudinary handles:
+
+```text
 q_auto
 f_auto
 ```
@@ -539,32 +741,22 @@ export interface ResponsiveImage {
 }
 ```
 
-Conceptual flow:
-
-```text
-publicId
-    ↓
-Cloudinary URL builder
-    ↓
-width / quality / format transformations
-    ↓
-optimized image
-```
-
 This keeps project data clean and makes future image changes easier.
 
 ---
 
 # PERFORMANCE
 
-The current implementation follows a basic production-oriented image loading strategy.
+The current implementation follows a production-oriented image loading strategy.
 
 ## Above-the-fold images
 
 Hero images use:
 
 ```html
-fetchPriority="high" loading="eager" decoding="async"
+fetchPriority="high"
+loading="eager"
+decoding="async"
 ```
 
 ## Below-the-fold images
@@ -572,8 +764,13 @@ fetchPriority="high" loading="eager" decoding="async"
 Project cards, posters and galleries use:
 
 ```html
-loading="lazy" decoding="async"
+loading="lazy"
+decoding="async"
 ```
+
+## Responsive image delivery
+
+Project detail heroes and galleries use responsive `srcSet` values generated from Cloudinary transformations.
 
 ## Video embeds
 
@@ -589,27 +786,35 @@ The goal is to prioritize the visual content that is immediately visible without
 
 # ACCESSIBILITY
 
-Accessibility is being incorporated as part of the production-readiness pass.
+Accessibility is being incorporated throughout the production-readiness pass.
 
 Current practices include:
 
-- Semantic `<h1>` / `<h2>` / `<h3>` hierarchy
-- `aria-labelledby` where useful
-- Decorative elements marked with `aria-hidden`
-- Meaningful project links
-- Keyboard-accessible navigation
-- `focus-visible` states
-- Appropriate image `alt` behavior
-- Sufficient text/background contrast
-- Responsive layouts for mobile and desktop
+* Semantic `<h1>` / `<h2>` / `<h3>` hierarchy
+* `aria-labelledby` where useful
+* `aria-label` where appropriate
+* Decorative elements marked with `aria-hidden`
+* Meaningful project links
+* Semantic React Router `<Link>` navigation
+* Keyboard-accessible navigation
+* Visible `focus-visible` states
+* Appropriate image `alt` behavior
+* External-link context for new tabs
+* Mobile navigation with `aria-expanded`
+* Mobile navigation with `aria-controls`
+* Prevention of background scrolling while the mobile menu is open
+* Sufficient text/background contrast
+* Responsive layouts for mobile, tablet and desktop
 
-Decorative hero imagery can use:
+The project avoids adding ARIA where native HTML semantics already provide the required behavior.
+
+Decorative imagery can use:
 
 ```html
 alt=""
 ```
 
-when the visible project title already provides the semantic context.
+when the visible content already provides the semantic context.
 
 ---
 
@@ -617,14 +822,14 @@ when the visible project title already provides the semantic context.
 
 The project is built using:
 
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- shadcn/ui where appropriate
-- React Router
-- Framer Motion
-- Cloudinary
+* React
+* TypeScript
+* Vite
+* Tailwind CSS
+* shadcn/ui where appropriate
+* React Router
+* Framer Motion
+* Cloudinary
 
 The application follows a separation between:
 
@@ -650,6 +855,7 @@ Current relevant components include:
 
 ```text
 src/
+
 ├── components/
 │   ├── Navbar.tsx
 │   ├── Footer.tsx
@@ -681,6 +887,8 @@ src/
 
 Global navigation and responsive navigation behavior.
 
+Supports both normal and hero-overlay modes.
+
 ### `Footer`
 
 Global footer and final site information.
@@ -691,7 +899,9 @@ Reusable project preview used by project listing pages.
 
 ### `ProjectDetail`
 
-Generic project detail renderer consuming the centralized project data.
+Generic project detail renderer consuming centralized project data.
+
+Handles projects from both `filmes` and `otros-proyectos`.
 
 ### `AnimatedSection`
 
@@ -707,7 +917,7 @@ Ensures route changes return to the correct scroll position.
 
 ### `cloudinary.ts`
 
-Centralized Cloudinary URL generation.
+Centralized Cloudinary URL generation and responsive image delivery.
 
 ---
 
@@ -721,12 +931,12 @@ src/index.css
 
 It contains:
 
-- Tailwind directives
-- Design tokens
-- Global typography
-- Base styles
-- Reusable layout utilities
-- Editorial helper classes
+* Tailwind directives
+* Design tokens
+* Global typography
+* Base styles
+* Reusable layout utilities
+* Editorial helper classes
 
 The original stylesheet is being preserved temporarily as:
 
@@ -743,6 +953,42 @@ src/App.css
 ```
 
 is considered obsolete and should be removed once the current cleanup is finalized.
+
+---
+
+# DEPLOYMENT
+
+The project is deployed through **GitHub Pages**.
+
+The Vite configuration uses a GitHub Pages-specific base path:
+
+```ts
+base: mode === "github-pages"
+  ? "/lia-portfolio-template/"
+  : "/"
+```
+
+The GitHub Actions workflow builds using:
+
+```sh
+npm run build -- --mode github-pages
+```
+
+The generated `index.html` is also copied to:
+
+```text
+dist/404.html
+```
+
+This allows client-side React Router routes to continue working correctly on GitHub Pages.
+
+The application uses:
+
+```tsx
+<BrowserRouter basename={import.meta.env.BASE_URL}>
+```
+
+so local development and the GitHub Pages deployment share the same routing architecture.
 
 ---
 
@@ -776,20 +1022,20 @@ The project should be tested at multiple viewport sizes.
 
 Before considering a page complete, verify:
 
-- Desktop
-- Tablet
-- Mobile
-- Navigation behavior
-- Keyboard navigation
-- Image loading
-- Cloudinary transformations
-- Typography
-- Spacing
-- Project navigation
-- External links
-- Trailer behavior
-- Responsive layout
-- Console errors
+* Desktop
+* Tablet
+* Mobile
+* Navigation behavior
+* Keyboard navigation
+* Image loading
+* Cloudinary transformations
+* Typography
+* Spacing
+* Project navigation
+* External links
+* Trailer behavior
+* Responsive layout
+* Console errors
 
 ---
 
@@ -823,12 +1069,12 @@ The portfolio should feel like an audiovisual author's website, not a SaaS dashb
 
 Avoid unnecessary:
 
-- Cards
-- Badges
-- Shadows
-- Gradients
-- Decorative components
-- Generic UI patterns
+* Cards
+* Badges
+* Shadows
+* Gradients
+* Decorative components
+* Generic UI patterns
 
 The content, typography, spacing and imagery should carry the experience.
 
@@ -838,11 +1084,17 @@ Semantic HTML, keyboard navigation, focus states, image semantics and contrast s
 
 ## 8. Performance matters
 
-Use Cloudinary transformations, lazy loading and appropriate resource priorities.
+Use Cloudinary transformations, responsive images, lazy loading and appropriate resource priorities.
 
 ## 9. No invented content
 
 All project descriptions, credits, screenings, links and audiovisual metadata must come from the real portfolio material.
+
+## 10. Fix before refactoring
+
+During the production-readiness pass, prefer focused corrections over unnecessary architectural changes.
+
+The project should remain simple, explicit and maintainable while the final pages are completed.
 
 ---
 
@@ -850,112 +1102,142 @@ All project descriptions, credits, screenings, links and audiovisual metadata mu
 
 ## Completed
 
-- [x] React / TypeScript project setup
-- [x] React Router architecture
-- [x] Real Lía Lugilde project data
-- [x] Six projects added
-- [x] `filmes` / `otros-proyectos` categories
-- [x] Listing descriptions
-- [x] Synopsis
-- [x] Credits
-- [x] Screenings
-- [x] External links
-- [x] Vimeo / YouTube trailer support
-- [x] Cloudinary image assets uploaded
-- [x] Cloudinary public IDs added to `projects.ts`
-- [x] Responsive image model simplified
-- [x] Legacy image URL assumptions removed from project data
-- [x] Homepage implemented
-- [x] Homepage cinematic hero / carousel
-- [x] Dedicated `homeImage` support with `heroImage` fallback
-- [x] Filmes page implemented
-- [x] Otros proyectos page implemented
-- [x] Project detail page implemented
-- [x] All six project detail routes tested
-- [x] Reusable `ProjectCard`
-- [x] Responsive project grids
-- [x] Basic image loading optimization
-- [x] Basic accessibility improvements
-- [x] Page transitions
-- [x] Scroll restoration between routes
+* [x] React / TypeScript project setup
+* [x] React Router architecture
+* [x] Real Lía Lugilde project data
+* [x] Six projects added
+* [x] `filmes` / `otros-proyectos` categories
+* [x] Listing descriptions
+* [x] Synopsis
+* [x] Credits
+* [x] Screenings
+* [x] External links
+* [x] Vimeo / YouTube trailer support
+* [x] Cloudinary image assets uploaded
+* [x] Cloudinary public IDs added to `projects.ts`
+* [x] Responsive image model simplified
+* [x] Legacy image URL assumptions removed from project data
+* [x] Homepage implemented
+* [x] Homepage cinematic hero
+* [x] Dedicated `homeImage` support with `heroImage` fallback
+* [x] Filmes page implemented
+* [x] Otros proyectos page implemented
+* [x] Project detail page implemented
+* [x] All six project detail routes tested
+* [x] Reusable `ProjectCard`
+* [x] Responsive project grids
+* [x] Responsive Cloudinary `srcSet`
+* [x] Basic image loading optimization
+* [x] Basic accessibility improvements
+* [x] Page transitions
+* [x] Scroll restoration between routes
+* [x] Category-aware project URLs
+* [x] Global circular Next Project navigation
+* [x] Cross-category project navigation
+* [x] Hero responsive behavior based on viewport aspect ratio
+* [x] Navbar overlay mode for hero pages
+* [x] Solid Navbar mode for non-hero pages
+* [x] Responsive mobile navigation
+* [x] Keyboard focus states in navigation and project links
 
 ---
 
 # CURRENT WORK — PROD READY PASS
 
-The project is now moving from **functional implementation** into a production-readiness and refinement phase.
+The project is now moving from **functional implementation** into the final production-readiness and refinement phase.
 
-## Current order of work
+## 1. Remaining pages
 
-### 1. Global shell
+### Bio
 
-- [ ] Review `Navbar.tsx`
-- [ ] Review `Footer.tsx`
-- [ ] Verify desktop navigation
-- [ ] Verify mobile navigation
-- [ ] Verify keyboard accessibility
-- [ ] Verify focus states
-- [ ] Verify fixed/floating behavior
-- [ ] Verify responsive spacing
+* [ ] Implement final `Bio` page
+* [ ] Add real biography content
+* [ ] Define final editorial composition
+* [ ] Responsive QA
+* [ ] Accessibility QA
 
-### 2. Global styles
+### Contacto
 
-- [x] Review `main.tsx`
-- [x] Review `App.tsx`
-- [ ] Finalize `index.css`
-- [ ] Remove obsolete `App.css`
-- [ ] Preserve original CSS temporarily as `index.backup.css`
-- [ ] Audit unused design tokens/utilities
+* [ ] Implement final `Contacto` page
+* [ ] Add real contact information
+* [ ] Define final editorial composition
+* [ ] Responsive QA
+* [ ] Accessibility QA
 
-### 3. Visual refinement
+## 2. Global shell
+
+* [x] Review `Navbar.tsx`
+* [x] Review fixed/floating behavior
+* [x] Hero overlay behavior
+* [x] Solid behavior on non-hero pages
+* [x] Desktop navigation
+* [x] Mobile navigation
+* [x] Keyboard accessibility
+* [x] Focus states
+* [ ] Final `Footer.tsx` review
+* [ ] Final responsive spacing review
+
+## 3. Global styles
+
+* [x] Review `main.tsx`
+* [x] Review `App.tsx`
+* [ ] Finalize `index.css`
+* [ ] Remove obsolete `App.css`
+* [x] Preserve original CSS temporarily as `index.backup.css`
+* [ ] Audit unused design tokens/utilities
+
+## 4. Visual refinement
 
 After all pages are functionally complete:
 
-- [ ] Typography scale
-- [ ] Font weights
-- [ ] Line heights
-- [ ] Section spacing
-- [ ] Horizontal padding
-- [ ] Image proportions
-- [ ] Mobile spacing
-- [ ] Desktop spacing
-- [ ] Navigation proportions
-- [ ] Footer proportions
+* [ ] Typography scale
+* [ ] Font weights
+* [ ] Line heights
+* [ ] Section spacing
+* [ ] Horizontal padding
+* [ ] Image proportions
+* [ ] Mobile spacing
+* [ ] Tablet spacing
+* [ ] Desktop spacing
+* [ ] Navigation proportions
+* [ ] Footer proportions
+* [ ] Cross-page visual consistency
 
 Visual refinement should remain faithful to the established reference rather than introducing a new design direction.
 
-### 4. SEO
+## 5. SEO
 
 SEO is intentionally postponed until the page structure is finalized.
 
 Planned work:
 
-- [ ] Document title
-- [ ] Meta description
-- [ ] Canonical URLs
-- [ ] Open Graph metadata
-- [ ] Twitter/X metadata where appropriate
-- [ ] Per-project metadata
-- [ ] Semantic heading audit
-- [ ] `robots.txt`
-- [ ] Sitemap
-- [ ] Structured metadata where justified
-- [ ] Social sharing previews
+* [ ] Document title
+* [ ] Meta description
+* [ ] Canonical URLs
+* [ ] Open Graph metadata
+* [ ] Twitter/X metadata where appropriate
+* [x] Per-project metadata foundation
+* [ ] Global metadata strategy
+* [ ] Semantic heading audit
+* [ ] `robots.txt`
+* [ ] Sitemap
+* [ ] Structured metadata where justified
+* [ ] Social sharing previews
 
-### 5. Final QA
+## 6. Final QA
 
-- [ ] Production build
-- [ ] Console error audit
-- [ ] Broken link audit
-- [ ] Image loading audit
-- [ ] Mobile QA
-- [ ] Tablet QA
-- [ ] Desktop QA
-- [ ] Keyboard navigation QA
-- [ ] Accessibility review
-- [ ] Performance review
-- [ ] SEO review
-- [ ] Final visual comparison against reference
+* [ ] Production build
+* [ ] Console error audit
+* [ ] Broken link audit
+* [ ] Image loading audit
+* [ ] Mobile QA
+* [ ] Tablet QA
+* [ ] Desktop QA
+* [ ] Keyboard navigation QA
+* [ ] Accessibility review
+* [ ] Performance review
+* [ ] SEO review
+* [ ] Final visual comparison against reference
 
 ---
 
@@ -965,6 +1247,8 @@ The project should progress in the following order:
 
 ```text
 Functional completeness
+        ↓
+Remaining pages
         ↓
 Global shell
         ↓
@@ -989,14 +1273,25 @@ The goal is to finish the complete portfolio first and then perform a controlled
 
 # CURRENT STATE SUMMARY
 
-The core portfolio architecture is already functional.
+The core portfolio architecture is functional.
 
-The six projects are represented through a centralized data model, images are delivered through Cloudinary, the main listing and detail pages are implemented, and all six project detail routes have been tested.
+The six projects are represented through a centralized data model, images are delivered through Cloudinary, the main listing and detail pages are implemented, and the project navigation correctly handles both categories.
 
-The remaining work is primarily:
+The global navigation now adapts its visual treatment depending on whether the page contains a hero, while project detail heroes respond to the viewport aspect ratio to preserve cinematic imagery on mobile and tablet displays.
+
+The remaining functional work is now concentrated on the two final content pages:
 
 ```text
-Navbar + Footer
+Bio
+Contacto
+```
+
+After those pages are completed, the project moves into the final refinement stage:
+
+```text
+Bio + Contacto
+       ↓
+Footer review
        ↓
 Global CSS cleanup
        ↓
@@ -1004,9 +1299,11 @@ Visual consistency
        ↓
 SEO
        ↓
-Final accessibility / performance audit
+Accessibility / performance audit
        ↓
 Production QA
+       ↓
+Production
 ```
 
 The project should remain **editorial, cinematic, minimal and content-driven** throughout the remaining development.

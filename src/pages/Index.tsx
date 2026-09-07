@@ -10,7 +10,13 @@ import { getCloudinaryUrl } from "@/lib/cloudinary";
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const featuredProjects = projects.slice(0, 6);
+  // Featured projects for the homepage.
+  // Currently limited to "Saltar" so the hero remains static.
+  // The carousel can be reactivated in the future by changing this filter.
+  const featuredProjects = projects.filter(
+    (project) => project.slug === "saltar",
+  );
+
   const currentProject = featuredProjects[currentSlide];
 
   useEffect(() => {
@@ -33,11 +39,17 @@ const Index = () => {
   }
 
   const homeImage =
-    currentProject.homeImage?.publicId ?? currentProject.heroImage.publicId;
+    currentProject.homeImage?.publicId ??
+    currentProject.heroImage.publicId;
+
+  const projectPath =
+    currentProject.category === "otros-proyectos"
+      ? `/otros-proyectos/${currentProject.slug}`
+      : `/filmes/${currentProject.slug}`;
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <Navbar />
+      <Navbar overlay/>
 
       {/* =========================================================
           HERO
@@ -48,8 +60,7 @@ const Index = () => {
         className="relative h-screen w-full overflow-hidden hero-banner"
       >
         <Link
-          to={`/work/${currentProject.slug}`}
-          aria-label={`Ver proyecto ${currentProject.title}`}
+          to={projectPath}
           className="
             block h-full relative
             focus-visible:outline-none
@@ -69,7 +80,10 @@ const Index = () => {
               className="w-full h-full object-cover"
             />
 
-            <div aria-hidden="true" className="absolute inset-0 bg-black/40" />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-black/40"
+            />
           </div>
 
           {/* Bottom Gradient */}
@@ -94,13 +108,16 @@ const Index = () => {
                 </h1>
               </div>
 
-              <div
-                aria-hidden="true"
-                className="shrink-0 font-sans text-base md:text-lg text-white/90"
-              >
-                {String(currentSlide + 1).padStart(2, "0")}/
-                {String(featuredProjects.length).padStart(2, "0")}
-              </div>
+              {/* Carousel counter intentionally hidden while only one project is featured */}
+              {featuredProjects.length > 1 && (
+                <div
+                  aria-hidden="true"
+                  className="shrink-0 font-sans text-base md:text-lg text-white/90"
+                >
+                  {String(currentSlide + 1).padStart(2, "0")}/
+                  {String(featuredProjects.length).padStart(2, "0")}
+                </div>
+              )}
             </div>
           </div>
         </Link>

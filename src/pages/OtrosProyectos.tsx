@@ -40,6 +40,7 @@ const OtrosProyectos = () => {
                 description={project.listingDescription}
                 image={project.heroImage.publicId}
                 slug={project.slug}
+                type="otros-proyectos"
                 variant="half"
                 index={index}
               />
