@@ -585,8 +585,7 @@ export const getProjectBySlug = (
 ): Project | undefined => {
   return projects.find(
     (project) =>
-      project.slug === slug &&
-      (!category || project.category === category),
+      project.slug === slug && (!category || project.category === category),
   );
 };
 
@@ -596,9 +595,7 @@ export const getProjectsByCategory = (
   return projects.filter((project) => project.category === category);
 };
 
-export const getNextProject = (
-  currentSlug: string,
-): Project | undefined => {
+export const getNextProject = (currentSlug: string): Project | undefined => {
   const currentIndex = projects.findIndex(
     (project) => project.slug === currentSlug,
   );
@@ -617,8 +614,5 @@ export const getPreviousProject = (
 
   if (currentIndex === -1) return undefined;
 
-  return projects[
-    (currentIndex - 1 + projects.length) % projects.length
-  ];
+  return projects[(currentIndex - 1 + projects.length) % projects.length];
 };
-

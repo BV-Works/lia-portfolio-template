@@ -229,7 +229,7 @@ const ProjectDetail = () => {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <Navbar overlay/>
+      <Navbar overlay />
 
       {/* =========================================================
           HERO IMAGE

@@ -39,8 +39,7 @@ const Index = () => {
   }
 
   const homeImage =
-    currentProject.homeImage?.publicId ??
-    currentProject.heroImage.publicId;
+    currentProject.homeImage?.publicId ?? currentProject.heroImage.publicId;
 
   const projectPath =
     currentProject.category === "otros-proyectos"
@@ -49,7 +48,7 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <Navbar overlay/>
+      <Navbar overlay />
 
       {/* =========================================================
           HERO
@@ -80,10 +79,7 @@ const Index = () => {
               className="w-full h-full object-cover"
             />
 
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 bg-black/40"
-            />
+            <div aria-hidden="true" className="absolute inset-0 bg-black/40" />
           </div>
 
           {/* Bottom Gradient */}
