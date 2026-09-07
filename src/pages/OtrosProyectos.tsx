@@ -15,15 +15,10 @@ const OtrosProyectos = () => {
 
       <section
         aria-labelledby="otros-proyectos-title"
-        className="pt-32 pb-24 md:pt-40 md:pb-32 lg:pb-40"
+        className="pt-32 pb-24 md:pt-28 md:pb-32 lg:pb-40"
       >
         <div className="px-6 md:px-12 lg:px-16">
           <AnimatedSection>
-            <div
-              aria-hidden="true"
-              className="w-full h-px bg-foreground/20 mb-8"
-            />
-
             <h1
               id="otros-proyectos-title"
               className="font-serif text-4xl md:text-5xl lg:text-6xl font-normal"

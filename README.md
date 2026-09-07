@@ -1,3 +1,4 @@
+````md
 # Lía Lugilde — Portfolio
 
 Portfolio web de **Lía Lugilde**, filmmaker y creadora audiovisual.
@@ -114,6 +115,7 @@ The `Navbar` component accepts an optional overlay mode:
 ```tsx
 <Navbar overlay />
 ```
+````
 
 This mode is used on pages where the navigation sits above a hero image:
 
@@ -130,6 +132,10 @@ Pages without a hero use the default solid navigation:
 /otros-proyectos
 /bio
 /contacto
+/politica-de-privacidad
+/politica-de-cookies
+/aviso-legal
+/accesibilidad
 ```
 
 This prevents the navigation from becoming visually invisible when placed over a plain page background.
@@ -179,7 +185,7 @@ Current projects:
 
 # ROUTING
 
-The current React Router architecture uses semantic category-based project URLs:
+The current React Router architecture uses semantic category-based project URLs and dedicated informational/legal pages:
 
 ```text
 /
@@ -190,25 +196,35 @@ The current React Router architecture uses semantic category-based project URLs:
 ├── /otros-proyectos/:slug
 ├── /bio
 ├── /contacto
+├── /politica-de-privacidad
+├── /politica-de-cookies
+├── /aviso-legal
+├── /accesibilidad
 └── *
 ```
 
 Routes:
 
-| Route                    | Page                 | Purpose                    |
-| ------------------------ | -------------------- | -------------------------- |
-| `/`                      | `Index.tsx`          | Homepage / cinematic hero  |
-| `/filmes`                | `Filmes.tsx`         | Main films listing         |
-| `/filmes/:slug`          | `ProjectDetail.tsx`  | Individual film            |
-| `/otros-proyectos`       | `OtrosProyectos.tsx` | Other audiovisual projects |
-| `/otros-proyectos/:slug` | `ProjectDetail.tsx`  | Individual other project   |
-| `/bio`                   | `About.tsx`          | Biography                  |
-| `/contacto`              | `Contact.tsx`        | Contact                    |
-| `*`                      | `NotFound.tsx`       | 404 page                   |
+| Route                     | Page                     | Purpose                    |
+| ------------------------- | ------------------------ | -------------------------- |
+| `/`                       | `Index.tsx`              | Homepage / cinematic hero  |
+| `/filmes`                 | `Filmes.tsx`             | Main films listing         |
+| `/filmes/:slug`           | `ProjectDetail.tsx`      | Individual film            |
+| `/otros-proyectos`        | `OtrosProyectos.tsx`     | Other audiovisual projects |
+| `/otros-proyectos/:slug`  | `ProjectDetail.tsx`      | Individual other project   |
+| `/bio`                    | `About.tsx`              | Biography                  |
+| `/contacto`               | `Contact.tsx`            | Contact                    |
+| `/politica-de-privacidad` | `PoliticaPrivacidad.tsx` | Privacy policy             |
+| `/politica-de-cookies`    | `PoliticaCookies.tsx`    | Cookie policy              |
+| `/aviso-legal`            | `AvisoLegal.tsx`         | Legal notice               |
+| `/accesibilidad`          | `Accesibilidad.tsx`      | Accessibility statement    |
+| `*`                       | `NotFound.tsx`           | 404 page                   |
 
 The project detail page is intentionally shared between both project categories.
 
 The current URL structure keeps the project category visible in the URL while allowing the same `ProjectDetail` component to render both types of project.
+
+Legal and informational pages use the same editorial layout system as the rest of the portfolio and share the global `Navbar` and `Footer`.
 
 ---
 
@@ -250,8 +266,11 @@ Relevant helpers include:
 
 ```ts
 getProjectBySlug();
+
 getProjectsByCategory();
+
 getNextProject();
+
 getPreviousProject();
 ```
 
@@ -538,6 +557,7 @@ These are represented independently from the main gallery:
 
 ```ts
 funding?: ResponsiveImage[];
+
 production?: ResponsiveImage[];
 ```
 
@@ -593,34 +613,24 @@ export interface Project {
   id: string;
   slug: string;
   category: "filmes" | "otros-proyectos";
-
   title: string;
   listingDescription: string;
-
   heroImage: ResponsiveImage;
   homeImage?: ResponsiveImage;
   poster: ResponsiveImage;
-
   synopsis: string;
-
   credits: {
     role: string;
     people: string;
   }[];
-
   screenings: string[];
-
   funding?: ResponsiveImage[];
-
   production?: ResponsiveImage[];
-
   links?: ProjectLink[];
-
   trailer?: {
     platform: "vimeo" | "youtube";
     url: string;
   };
-
   gallery: ResponsiveImage[];
 }
 ```
@@ -693,11 +703,17 @@ Conceptually:
 
 ```text
 publicId
+
     ↓
+
 Cloudinary URL builder
+
     ↓
+
 width / quality / format transformations
+
     ↓
+
 optimized image
 ```
 
@@ -802,6 +818,7 @@ Current practices include:
 - Prevention of background scrolling while the mobile menu is open
 - Sufficient text/background contrast
 - Responsive layouts for mobile, tablet and desktop
+- Decorative visual elements prevented from intercepting pointer interaction where appropriate
 
 The project avoids adding ARIA where native HTML semantics already provide the required behavior.
 
@@ -812,6 +829,138 @@ alt=""
 ```
 
 when the visible content already provides the semantic context.
+
+React Router `<Link>` components remain the preferred mechanism for internal navigation. They render standard anchor elements while providing client-side routing behavior.
+
+## Accessibility statement
+
+A dedicated accessibility statement is available at:
+
+```text
+/accesibilidad
+```
+
+The current statement is a V1 declaration describing the accessibility measures incorporated into the site.
+
+It intentionally does **not** claim full WCAG or UNE-EN 301 549 conformity before the final accessibility review has been completed.
+
+The statement will be reviewed again after the production accessibility audit.
+
+---
+
+# LEGAL AND INFORMATIONAL PAGES
+
+The project includes dedicated pages for the main legal and informational requirements of the portfolio:
+
+```text
+/aviso-legal
+/politica-de-privacidad
+/politica-de-cookies
+/accesibilidad
+```
+
+## Aviso legal
+
+Contains the site's identifying information, ownership, responsibility, intellectual property and applicable legal framework.
+
+## Política de privacidad
+
+Describes the processing of personal data and the rights of users.
+
+The privacy policy is aligned with the current contact functionality and will be reviewed again if additional data-processing services are introduced.
+
+## Política de cookies
+
+A V1 cookie policy is currently implemented.
+
+The final cookie inventory is intentionally postponed until the website is fully deployed in production.
+
+The production audit will verify:
+
+- Actual cookies
+- Third-party cookies
+- Cookie purposes
+- Cookie duration
+- Cloudinary behavior
+- Form/contact service behavior
+- Analytics, if eventually introduced
+- Other third-party services
+- Whether any non-essential cookies require a consent mechanism
+
+The current policy therefore avoids inventing specific cookie names or providers before they have been verified in the final production environment.
+
+## Accessibility
+
+A dedicated accessibility statement is available at:
+
+```text
+/accesibilidad
+```
+
+It documents the accessibility approach and current implementation without claiming an external certification or full audited conformity.
+
+---
+
+# FOOTER
+
+The global `Footer` component provides:
+
+- Contact information
+- Social links
+- Vimeo
+- Copyright
+- Legal navigation
+- Back-to-top control
+- Website attribution
+
+Current legal links:
+
+```text
+Aviso legal
+Política de privacidad
+Política de cookies
+Accesibilidad
+```
+
+Internal legal navigation uses React Router `<Link>` components.
+
+The decorative `LIA.` footer wordmark is marked as non-interactive so that it cannot intercept pointer interaction with the legal links on smaller viewports.
+
+---
+
+# CONTACT
+
+Route:
+
+```text
+/contacto
+```
+
+The contact page provides:
+
+- Contact email
+- Contact form
+- Name field
+- Email field
+- Message field
+- Privacy acknowledgement
+- Social links
+- Vimeo
+- Location information
+
+The form is designed with accessibility in mind, including:
+
+- Explicit labels
+- Validation messaging
+- Accessible status feedback
+- Focus states
+- Keyboard navigation
+- `aria-describedby` where appropriate
+- `aria-busy` during submission
+
+The form uses an external form-processing service rather than a custom backend.
+
+The final production configuration and privacy/cookie implications of the form service will be reviewed during the production audit.
 
 ---
 
@@ -832,11 +981,17 @@ The application follows a separation between:
 
 ```text
 Data
+
   ↓
+
 Reusable components
+
   ↓
+
 Pages
+
   ↓
+
 Presentation
 ```
 
@@ -875,6 +1030,10 @@ src/
     ├── About.tsx
     ├── Contact.tsx
     ├── ProjectDetail.tsx
+    ├── PoliticaPrivacidad.tsx
+    ├── PoliticaCookies.tsx
+    ├── AvisoLegal.tsx
+    ├── Accesibilidad.tsx
     └── NotFound.tsx
 ```
 
@@ -888,7 +1047,7 @@ Supports both normal and hero-overlay modes.
 
 ### `Footer`
 
-Global footer and final site information.
+Global footer, legal navigation and final site information.
 
 ### `ProjectCard`
 
@@ -1030,6 +1189,7 @@ Before considering a page complete, verify:
 - External links
 - Trailer behavior
 - Responsive layout
+- Legal links
 - Console errors
 
 ---
@@ -1091,6 +1251,12 @@ During the production-readiness pass, prefer focused corrections over unnecessar
 
 The project should remain simple, explicit and maintainable while the final pages are completed.
 
+## 11. Legal pages should reflect the real implementation
+
+Privacy, cookies, legal and accessibility content should describe the actual production website.
+
+Do not copy generic legal templates or third-party service assumptions without verifying that they apply to the current implementation.
+
 ---
 
 # CURRENT PROJECT STATUS
@@ -1134,6 +1300,15 @@ The project should remain simple, explicit and maintainable while the final page
 - [x] Solid Navbar mode for non-hero pages
 - [x] Responsive mobile navigation
 - [x] Keyboard focus states in navigation and project links
+- [x] Contact page structure and accessible contact form
+- [x] Aviso legal page
+- [x] Política de privacidad page
+- [x] Política de cookies V1
+- [x] Accesibilidad V1
+- [x] Legal/informational routes
+- [x] Footer legal navigation
+- [x] Footer decorative interaction fix
+- [x] Global legal/informational page layout consistency
 
 ---
 
@@ -1141,23 +1316,27 @@ The project should remain simple, explicit and maintainable while the final page
 
 The project is now moving from **functional implementation** into the final production-readiness and refinement phase.
 
-## 1. Remaining pages
+## 1. Remaining content pages
 
 ### Bio
 
-- [ ] Implement final `Bio` page
-- [ ] Add real biography content
+- [ ] Implement/finalize final `Bio` page
+- [ ] Add/verify real biography content
 - [ ] Define final editorial composition
 - [ ] Responsive QA
 - [ ] Accessibility QA
 
 ### Contacto
 
-- [ ] Implement final `Contacto` page
-- [ ] Add real contact information
-- [ ] Define final editorial composition
+- [x] Contact page implemented
+- [x] Contact form structure implemented
+- [x] Accessibility-focused form implementation
+- [ ] Final form service configuration
+- [ ] Final privacy/data-processing verification
 - [ ] Responsive QA
 - [ ] Accessibility QA
+
+---
 
 ## 2. Global shell
 
@@ -1169,10 +1348,27 @@ The project is now moving from **functional implementation** into the final prod
 - [x] Mobile navigation
 - [x] Keyboard accessibility
 - [x] Focus states
-- [ ] Final `Footer.tsx` review
+- [x] Footer legal navigation
+- [x] Footer decorative interaction behavior
 - [ ] Final responsive spacing review
 
-## 3. Global styles
+---
+
+## 3. Legal and informational pages
+
+- [x] Aviso legal
+- [x] Política de privacidad
+- [x] Política de cookies V1
+- [x] Declaración de accesibilidad V1
+- [x] Footer links
+- [ ] Final production cookie audit
+- [ ] Final privacy review against actual production services
+- [ ] Final accessibility audit
+- [ ] Update legal pages if production services change
+
+---
+
+## 4. Global styles
 
 - [x] Review `main.tsx`
 - [x] Review `App.tsx`
@@ -1181,7 +1377,9 @@ The project is now moving from **functional implementation** into the final prod
 - [x] Preserve original CSS temporarily as `index.backup.css`
 - [ ] Audit unused design tokens/utilities
 
-## 4. Visual refinement
+---
+
+## 5. Visual refinement
 
 After all pages are functionally complete:
 
@@ -1200,12 +1398,15 @@ After all pages are functionally complete:
 
 Visual refinement should remain faithful to the established reference rather than introducing a new design direction.
 
-## 5. SEO
+---
+
+## 6. SEO
 
 SEO is intentionally postponed until the page structure is finalized.
 
 Planned work:
 
+- [ ] Reusable SEO component
 - [ ] Document title
 - [ ] Meta description
 - [ ] Canonical URLs
@@ -1213,13 +1414,67 @@ Planned work:
 - [ ] Twitter/X metadata where appropriate
 - [x] Per-project metadata foundation
 - [ ] Global metadata strategy
+- [ ] Legal/informational page metadata
 - [ ] Semantic heading audit
 - [ ] `robots.txt`
 - [ ] Sitemap
 - [ ] Structured metadata where justified
 - [ ] Social sharing previews
 
-## 6. Final QA
+SEO should be implemented as a reusable strategy rather than through isolated metadata logic duplicated across individual pages.
+
+---
+
+## 7. Production cookie audit
+
+This audit is intentionally postponed until the site is fully deployed.
+
+Final production inspection should verify:
+
+- Cookies actually set by the website
+- Third-party requests
+- Cloudinary behavior
+- Form-processing service behavior
+- Analytics, if introduced
+- Local/session storage where relevant
+- Cookie duration
+- Cookie purpose
+- Whether any cookies are non-essential
+- Whether a consent mechanism is required
+
+The cookie policy should then be updated to match the actual production behavior.
+
+---
+
+## 8. Final accessibility audit
+
+The site already incorporates accessibility practices during development.
+
+The final audit should verify:
+
+- Keyboard navigation
+- Focus order
+- Focus visibility
+- Heading hierarchy
+- Accessible names
+- Form labels and errors
+- Image alternatives
+- Contrast
+- Responsive text
+- Reflow
+- Interactive controls
+- Mobile navigation
+- External links
+- Motion/transition behavior
+- Screen-reader behavior
+- Route transitions
+- Legal/informational pages
+
+The accessibility statement should be updated after this review if necessary.
+
+---
+
+## 9. Final QA
 
 - [ ] Production build
 - [ ] Console error audit
@@ -1232,7 +1487,10 @@ Planned work:
 - [ ] Accessibility review
 - [ ] Performance review
 - [ ] SEO review
+- [ ] Cookie audit
+- [ ] Privacy/legal review
 - [ ] Final visual comparison against reference
+- [ ] GitHub Pages production verification
 
 ---
 
@@ -1242,21 +1500,45 @@ The project should progress in the following order:
 
 ```text
 Functional completeness
+
         ↓
-Remaining pages
+
+Remaining content pages
+
         ↓
+
 Global shell
+
         ↓
+
 Global styles
+
         ↓
+
 Visual refinement
+
         ↓
+
 SEO
+
         ↓
-Performance / accessibility audit
+
+Production cookie audit
+
         ↓
+
+Accessibility / performance audit
+
+        ↓
+
+Final legal review
+
+        ↓
+
 Final QA
+
         ↓
+
 Production
 ```
 
@@ -1272,33 +1554,77 @@ The core portfolio architecture is functional.
 
 The six projects are represented through a centralized data model, images are delivered through Cloudinary, the main listing and detail pages are implemented, and the project navigation correctly handles both categories.
 
-The global navigation now adapts its visual treatment depending on whether the page contains a hero, while project detail heroes respond to the viewport aspect ratio to preserve cinematic imagery on mobile and tablet displays.
+The global navigation adapts its visual treatment depending on whether the page contains a hero, while project detail heroes respond to the viewport aspect ratio to preserve cinematic imagery on mobile and tablet displays.
 
-The remaining functional work is now concentrated on the two final content pages:
+The global legal/informational layer is now also in place:
+
+```text
+Aviso legal
+Política de privacidad
+Política de cookies
+Accesibilidad
+```
+
+The Footer exposes these pages through accessible internal navigation.
+
+The cookie policy is intentionally a V1 implementation. The definitive cookie inventory will be performed against the fully deployed production website after all external services, SEO and contact functionality are finalized.
+
+The accessibility statement is also a V1 declaration. It documents the accessibility work already incorporated without claiming full external certification or audited WCAG/UNE-EN 301 549 conformity.
+
+The remaining functional work is now primarily concentrated on:
 
 ```text
 Bio
-Contacto
+Final Contact configuration
 ```
 
-After those pages are completed, the project moves into the final refinement stage:
+After that, the project moves into the final refinement stage:
 
 ```text
-Bio + Contacto
-       ↓
-Footer review
-       ↓
+Bio
+   +
+Final Contact configuration
+
+        ↓
+
+Footer / global shell final review
+
+        ↓
+
 Global CSS cleanup
-       ↓
+
+        ↓
+
 Visual consistency
-       ↓
+
+        ↓
+
 SEO
-       ↓
+
+        ↓
+
+Production cookie audit
+
+        ↓
+
 Accessibility / performance audit
-       ↓
+
+        ↓
+
+Legal review
+
+        ↓
+
 Production QA
-       ↓
+
+        ↓
+
 Production
 ```
 
 The project should remain **editorial, cinematic, minimal and content-driven** throughout the remaining development.
+
+```
+
+**Nota:** he dejado la auditoría de cookies explícitamente para producción, que es justo lo que hemos decidido. Y la declaración de accesibilidad no afirma una conformidad que todavía no hayamos auditado; eso nos evita tener que respaldar ahora una lista enorme de criterios WCAG/UNE-EN 301 549.
+```

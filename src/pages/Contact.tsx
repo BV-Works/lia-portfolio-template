@@ -1,231 +1,452 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
 
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/REPLACE_WITH_FORM_ID";
+
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+  privacy: boolean;
+}
+
+const initialFormData: FormData = {
+  name: "",
+  email: "",
+  message: "",
+  privacy: false,
+};
+
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    budget: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
+    const { name, value, type } = e.target;
+
+    setFormData((previous) => ({
+      ...previous,
+      [name]:
+        type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
     }));
+
+    if (status !== "idle") {
+      setStatus("idle");
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
-    alert("Message sent! I will get back to you soon.");
-    setFormData({ name: "", email: "", company: "", budget: "", message: "" });
+
+    setIsSubmitting(true);
+    setStatus("idle");
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          privacy: "accepted",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
+
+      setFormData(initialFormData);
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-12 md:pt-40 md:pb-16">
+      {/* Hero */}
+      <section
+        aria-labelledby="contact-title"
+        className="pt-32 pb-12 md:pt-28 md:pb-16"
+      >
         <div className="px-6 md:px-12 lg:px-16">
           <AnimatedSection>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-normal leading-tight max-w-4xl">
-              Let's work together
+            <h1
+              id="contact-title"
+              className="max-w-4xl font-serif text-4xl font-normal leading-tight md:text-5xl lg:text-6xl"
+            >
+              Contacto
             </h1>
-            <p className="font-sans text-base md:text-lg text-muted-foreground mt-6 max-w-2xl">
-              Have a project in mind? Fill out the form below and I'll get back
-              to you within 24 hours.
+
+            <p
+              id="contact-description"
+              className="mt-6 max-w-2xl font-sans text-base leading-relaxed text-muted-foreground md:text-lg"
+            >
+              Si quieres hablar sobre un proyecto, una colaboración o
+              simplemente ponerte en contacto, puedes escribirme a través de
+              este formulario.
             </p>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Form Section */}
-      <section className="py-12 md:py-16">
+      {/* Contact content */}
+      <section aria-labelledby="contact-form-title" className="py-12 md:py-16">
         <div className="px-6 md:px-12 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            {/* Left Column - Form */}
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+            {/* Form */}
             <AnimatedSection className="lg:col-span-7">
-              <form onSubmit={handleSubmit} className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Name */}
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block font-sans text-xs font-semibold uppercase tracking-wider mb-3"
-                    >
-                      Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-0 py-3 bg-transparent border-0 border-b border-foreground/20 font-sans text-base focus:outline-none focus:border-foreground transition-colors"
-                      placeholder="Your name"
-                    />
-                  </div>
+              <h2 id="contact-form-title" className="sr-only">
+                Formulario de contacto
+              </h2>
 
-                  {/* Email */}
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block font-sans text-xs font-semibold uppercase tracking-wider mb-3"
-                    >
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-0 py-3 bg-transparent border-0 border-b border-foreground/20 font-sans text-base focus:outline-none focus:border-foreground transition-colors"
-                      placeholder="your@email.com"
-                    />
-                  </div>
+              <form
+                onSubmit={handleSubmit}
+                aria-describedby="contact-description"
+                aria-busy={isSubmitting}
+                className="space-y-8"
+              >
+                {/* Name */}
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="mb-3 block font-sans text-xs font-semibold uppercase tracking-wider"
+                  >
+                    Nombre *
+                  </label>
+
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    autoComplete="name"
+                    placeholder="Tu nombre"
+                    className="
+                      w-full border-0 border-b border-foreground/20
+                      bg-transparent px-0 py-3
+                      font-sans text-base
+                      outline-none
+                      transition-colors
+                      placeholder:text-muted-foreground/60
+                      focus:border-foreground
+                      focus-visible:ring-2
+                      focus-visible:ring-foreground
+                      focus-visible:ring-offset-4
+                      focus-visible:ring-offset-background
+                    "
+                  />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Company */}
-                  <div>
-                    <label
-                      htmlFor="company"
-                      className="block font-sans text-xs font-semibold uppercase tracking-wider mb-3"
-                    >
-                      Company
-                    </label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full px-0 py-3 bg-transparent border-0 border-b border-foreground/20 font-sans text-base focus:outline-none focus:border-foreground transition-colors"
-                      placeholder="Your company"
-                    />
-                  </div>
+                {/* Email */}
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="mb-3 block font-sans text-xs font-semibold uppercase tracking-wider"
+                  >
+                    Email *
+                  </label>
 
-                  {/* Budget */}
-                  <div>
-                    <label
-                      htmlFor="budget"
-                      className="block font-sans text-xs font-semibold uppercase tracking-wider mb-3"
-                    >
-                      Budget
-                    </label>
-                    <select
-                      id="budget"
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleChange}
-                      className="w-full px-0 py-3 bg-transparent border-0 border-b border-foreground/20 font-sans text-base focus:outline-none focus:border-foreground transition-colors cursor-pointer"
-                    >
-                      <option value="">Select a range</option>
-                      <option value="5k-10k">$5,000 - $10,000</option>
-                      <option value="10k-25k">$10,000 - $25,000</option>
-                      <option value="25k-50k">$25,000 - $50,000</option>
-                      <option value="50k+">$50,000+</option>
-                    </select>
-                  </div>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    autoComplete="email"
+                    inputMode="email"
+                    placeholder="tu@email.com"
+                    className="
+                      w-full border-0 border-b border-foreground/20
+                      bg-transparent px-0 py-3
+                      font-sans text-base
+                      outline-none
+                      transition-colors
+                      placeholder:text-muted-foreground/60
+                      focus:border-foreground
+                      focus-visible:ring-2
+                      focus-visible:ring-foreground
+                      focus-visible:ring-offset-4
+                      focus-visible:ring-offset-background
+                    "
+                  />
                 </div>
 
                 {/* Message */}
                 <div>
                   <label
                     htmlFor="message"
-                    className="block font-sans text-xs font-semibold uppercase tracking-wider mb-3"
+                    className="mb-3 block font-sans text-xs font-semibold uppercase tracking-wider"
                   >
-                    Tell me about your project *
+                    Mensaje *
                   </label>
+
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={5}
-                    className="w-full px-0 py-3 bg-transparent border-0 border-b border-foreground/20 font-sans text-base focus:outline-none focus:border-foreground transition-colors resize-none"
-                    placeholder="What are you working on? What do you need help with?"
+                    rows={7}
+                    placeholder="Cuéntame sobre tu proyecto..."
+                    className="
+                      w-full resize-none border-0 border-b border-foreground/20
+                      bg-transparent px-0 py-3
+                      font-sans text-base
+                      outline-none
+                      transition-colors
+                      placeholder:text-muted-foreground/60
+                      focus:border-foreground
+                      focus-visible:ring-2
+                      focus-visible:ring-foreground
+                      focus-visible:ring-offset-4
+                      focus-visible:ring-offset-background
+                    "
                   />
                 </div>
 
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  className="inline-flex items-center gap-3 font-sans text-sm font-semibold bg-foreground text-background px-8 py-4 hover:opacity-80 transition-opacity"
-                >
-                  Send Message
-                  <span>→</span>
-                </button>
-              </form>
-            </AnimatedSection>
+                {/* Privacy consent */}
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="privacy"
+                    name="privacy"
+                    checked={formData.privacy}
+                    onChange={handleChange}
+                    required
+                    className="
+                      mt-1 h-4 w-4 shrink-0
+                      cursor-pointer
+                      accent-foreground
+                      focus-visible:outline-none
+                      focus-visible:ring-2
+                      focus-visible:ring-foreground
+                      focus-visible:ring-offset-2
+                      focus-visible:ring-offset-background
+                    "
+                  />
 
-            {/* Right Column - Contact Info */}
-            <AnimatedSection delay={0.1} className="lg:col-span-5">
-              <div className="lg:pl-8 space-y-10">
-                {/* Email */}
-                <div>
-                  <h3 className="font-sans text-xs font-semibold uppercase tracking-wider mb-3">
-                    Email
-                  </h3>
-                  <a
-                    href="mailto:hello@julienmoreau.design"
-                    className="font-sans text-base text-foreground hover:opacity-60 transition-opacity"
+                  <label
+                    htmlFor="privacy"
+                    className="font-sans text-sm leading-relaxed text-muted-foreground"
                   >
-                    hello@julienmoreau.design
-                  </a>
+                    He leído y acepto la información básica sobre protección de
+                    datos contenida en la{" "}
+                    <Link
+                      to="/politica-de-privacidad"
+                      className="
+                        underline underline-offset-2
+                        transition-colors
+                        hover:text-foreground
+                        focus-visible:outline-none
+                        focus-visible:ring-2
+                        focus-visible:ring-foreground
+                        focus-visible:ring-offset-2
+                        focus-visible:ring-offset-background
+                      "
+                    >
+                      política de privacidad
+                    </Link>
+                    .
+                  </label>
                 </div>
 
-                {/* Location */}
-                <div>
-                  <h3 className="font-sans text-xs font-semibold uppercase tracking-wider mb-3">
-                    Location
-                  </h3>
-                  <p className="font-sans text-base text-muted-foreground">
-                    Paris, France
-                    <br />
-                    Available for remote work worldwide
-                  </p>
-                </div>
+                {/* Submit */}
+                <div className="flex flex-col items-start gap-4">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="
+                      inline-flex items-center gap-3
+                      bg-foreground px-8 py-4
+                      font-sans text-sm font-semibold text-background
+                      transition-opacity
+                      hover:opacity-80
+                      disabled:cursor-not-allowed
+                      disabled:opacity-50
+                      focus-visible:outline-none
+                      focus-visible:ring-2
+                      focus-visible:ring-foreground
+                      focus-visible:ring-offset-4
+                      focus-visible:ring-offset-background
+                    "
+                  >
+                    {isSubmitting ? "Enviando..." : "Enviar mensaje"}
 
-                {/* Social */}
-                <div>
-                  <h3 className="font-sans text-xs font-semibold uppercase tracking-wider mb-3">
-                    Social
-                  </h3>
-                  <div className="flex flex-col gap-2">
-                    {["LinkedIn", "Twitter", "Instagram", "Dribbble"].map(
-                      (social) => (
-                        <a
-                          key={social}
-                          href="#"
-                          className="font-sans text-base text-muted-foreground hover:text-foreground transition-colors"
-                        >
-                          {social}
-                        </a>
-                      ),
+                    {!isSubmitting && <span aria-hidden="true">→</span>}
+                  </button>
+
+                  <div aria-live="polite" aria-atomic="true">
+                    {isSubmitting && (
+                      <p className="font-sans text-sm text-muted-foreground">
+                        Enviando mensaje...
+                      </p>
+                    )}
+
+                    {status === "success" && (
+                      <p
+                        role="status"
+                        className="font-sans text-sm text-foreground"
+                      >
+                        Mensaje enviado correctamente. Gracias por escribir.
+                      </p>
+                    )}
+
+                    {status === "error" && (
+                      <p
+                        role="alert"
+                        className="font-sans text-sm text-foreground"
+                      >
+                        No se ha podido enviar el mensaje. Inténtalo de nuevo en
+                        unos minutos.
+                      </p>
                     )}
                   </div>
                 </div>
+              </form>
+            </AnimatedSection>
 
-                {/* Availability */}
-                <div className="pt-6 border-t border-foreground/10">
-                  <p className="font-sans text-sm text-muted-foreground">
-                    Currently accepting new projects for Q2 2025.
+            {/* Contact information */}
+            <AnimatedSection delay={0.1} className="lg:col-span-5">
+              <div className="space-y-10 lg:pl-8">
+                <div>
+                  <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider">
+                    Email
+                  </h2>
+
+                  <a
+                    href="mailto:lia@flugilde.es"
+                    className="
+                      font-sans text-base
+                      transition-opacity
+                      hover:opacity-60
+                      focus-visible:outline-none
+                      focus-visible:ring-2
+                      focus-visible:ring-foreground
+                      focus-visible:ring-offset-4
+                      focus-visible:ring-offset-background
+                    "
+                  >
+                    lia@flugilde.es
+                  </a>
+                </div>
+
+                <div>
+                  <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider">
+                    Ubicación
+                  </h2>
+
+                  <p className="font-sans text-base leading-relaxed text-muted-foreground">
+                    Asturias, España
+                    <br />
+                    Disponible para proyectos y colaboraciones.
+                  </p>
+                </div>
+
+                <div>
+                  <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider">
+                    Social
+                  </h2>
+
+                  <nav aria-label="Redes sociales">
+                    <ul className="flex flex-col gap-2">
+                      <li>
+                        <a
+                          href="https://www.instagram.com/lachicacheca_/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="
+                            font-sans text-base text-muted-foreground
+                            transition-colors
+                            hover:text-foreground
+                            focus-visible:outline-none
+                            focus-visible:ring-2
+                            focus-visible:ring-foreground
+                            focus-visible:ring-offset-4
+                            focus-visible:ring-offset-background
+                          "
+                        >
+                          Instagram
+                          <span className="sr-only">
+                            {" "}
+                            (abre en una nueva pestaña)
+                          </span>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a
+                          href="https://www.linkedin.com/in/lía-fernández-lugilde-156aaa130/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="
+                            font-sans text-base text-muted-foreground
+                            transition-colors
+                            hover:text-foreground
+                            focus-visible:outline-none
+                            focus-visible:ring-2
+                            focus-visible:ring-foreground
+                            focus-visible:ring-offset-4
+                            focus-visible:ring-offset-background
+                          "
+                        >
+                          LinkedIn
+                          <span className="sr-only">
+                            {" "}
+                            (abre en una nueva pestaña)
+                          </span>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a
+                          href="https://vimeo.com/lialugilde"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="
+                            font-sans text-base text-muted-foreground
+                            transition-colors
+                            hover:text-foreground
+                            focus-visible:outline-none
+                            focus-visible:ring-2
+                            focus-visible:ring-foreground
+                            focus-visible:ring-offset-4
+                            focus-visible:ring-offset-background
+                          "
+                        >
+                          Vimeo
+                          <span className="sr-only">
+                            {" "}
+                            (abre en una nueva pestaña)
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+
+                <div className="border-t border-foreground/10 pt-6">
+                  <p className="font-sans text-sm leading-relaxed text-muted-foreground">
+                    Abierta a nuevos proyectos, colaboraciones y propuestas.
                   </p>
                 </div>
               </div>

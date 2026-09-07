@@ -11,6 +11,10 @@ import OtrosProyectos from "./pages/OtrosProyectos";
 import Bio from "./pages/About";
 import Contacto from "./pages/Contact";
 import ProjectDetail from "./pages/ProjectDetail";
+import PoliticaPrivacidad from "./pages/PoliticaPrivacidad";
+import AvisoLegal from "./pages/AvisoLegal";
+import PoliticaCookies from "./pages/PoliticaCookies";
+import Accesibilidad from "./pages/Accesibilidad";
 import NotFound from "./pages/NotFound";
 
 import ScrollToTop from "./components/ScrollToTop";
@@ -94,7 +98,48 @@ const AnimatedRoutes = () => {
           }
         />
 
-        {/* 404 */}
+        {/* Política de privacidad */}
+        <Route
+          path="/politica-de-privacidad"
+          element={
+            <PageTransition>
+              <PoliticaPrivacidad />
+            </PageTransition>
+          }
+        />
+
+        {/* Aviso legal */}
+        <Route
+          path="/aviso-legal"
+          element={
+            <PageTransition>
+              <AvisoLegal />
+            </PageTransition>
+          }
+        />
+
+        {/* Política de cookies  */}
+        <Route
+          path="/politica-de-cookies"
+          element={
+            <PageTransition>
+              <PoliticaCookies />
+            </PageTransition>
+          }
+        />
+
+        {/* Política de accesibilidad  */}
+        <Route
+          path="/accesibilidad"
+          element={
+            <PageTransition>
+              {" "}
+              <Accesibilidad />{" "}
+            </PageTransition>
+          }
+        />
+
+        {/* 404 — siempre al final */}
         <Route
           path="*"
           element={
