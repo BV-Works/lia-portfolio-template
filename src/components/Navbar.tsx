@@ -86,7 +86,7 @@ const Navbar = ({ overlay = false }: NavbarProps) => {
               onClick={closeMenu}
               aria-label="LIA LUGILDE — inicio"
               className={cn(
-                "font-logo text-xl font-semibold tracking-tight",
+                "font-logo text-xl font-normal tracking-tight",
                 "transition-colors duration-300",
                 isTransparent ? "text-white" : "text-foreground",
                 "hover:opacity-70",

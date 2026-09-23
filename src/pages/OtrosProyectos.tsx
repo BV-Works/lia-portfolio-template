@@ -33,7 +33,9 @@ const OtrosProyectos = () => {
                 key={project.id}
                 title={project.title}
                 description={project.listingDescription}
-                image={project.heroImage.publicId}
+                image={
+                  project.homeImage?.publicId ?? project.heroImage.publicId
+                }
                 slug={project.slug}
                 type="otros-proyectos"
                 variant="half"

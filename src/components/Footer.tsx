@@ -87,62 +87,22 @@ const Footer = () => {
               <span className="sr-only"> (abre en una nueva pestaña)</span>
             </a>
           </div>
-
-          {/* Newsletter
-          <div>
-            <h2 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider">
-              Newsletter
-            </h2>
-
-            <form
-              action="#"
-              method="post"
-              className="flex items-center border-b border-background/30 pb-2"
-            >
-              <label htmlFor="footer-email" className="sr-only">
-                Tu dirección de email
-              </label>
-
-              <input
-                id="footer-email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                placeholder="Tu email"
-                required
-                className="min-w-0 flex-1 bg-transparent font-sans text-sm text-background placeholder:text-background/50 outline-none focus-visible:ring-0"
-              />
-
-              <button
-                type="submit"
-                aria-label="Suscribirse al newsletter"
-                className="ml-3 shrink-0 text-background/70 transition-colors hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
-              >
-                <ArrowUp
-                  size={20}
-                  strokeWidth={1.5}
-                  className="rotate-45"
-                  aria-hidden="true"
-                />
-              </button>
-            </form>
-          </div> */}
         </div>
       </div>
 
       {/* Brand / Back to top */}
       <div className="relative px-6 pt-10 md:px-12 md:pt-12 lg:px-16">
-        <div className="flex items-end justify-between">
+        <div className="flex items-end justify-between gap-6">
           <p
             aria-hidden="true"
-            className="pointer-events-none select-none font-logo font-bold leading-none text-background"
+            className="min-w-0 max-w-[calc(100%-5rem)] pointer-events-none select-none font-logo font-bold leading-none text-background"
             style={{
-              fontSize: "clamp(4rem, 20vw, 22rem)",
+              fontSize: "clamp(3rem, 10vw, 10rem)",
               letterSpacing: "-0.02em",
               lineHeight: "0.85",
             }}
           >
-            LIA.
+            LIA LUGILDE.
           </p>
 
           <button

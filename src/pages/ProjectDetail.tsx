@@ -279,6 +279,7 @@ const ProjectDetail = () => {
               font-serif
               text-5xl md:text-7xl lg:text-8xl
               font-medium
+              uppercase
               leading-[0.95]
             "
           >

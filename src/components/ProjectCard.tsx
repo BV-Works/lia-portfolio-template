@@ -63,7 +63,7 @@ const ProjectCard = ({
 
           {/* Content */}
           <div className="space-y-2">
-            <h3 className="font-sans text-base md:text-lg font-semibold text-foreground group-hover:opacity-60 transition-opacity duration-300">
+            <h3 className="font-sans text-base md:text-lg font-semibold uppercase text-foreground group-hover:opacity-60 transition-opacity duration-300">
               {title}
             </h3>
 

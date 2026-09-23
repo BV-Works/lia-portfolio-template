@@ -117,7 +117,7 @@ The `Navbar` component accepts an optional overlay mode:
 
 ```tsx
 <Navbar overlay />
-````
+```
 
 This mode is used on pages where the navigation sits above a hero image:
 
@@ -161,29 +161,29 @@ Current projects:
 
 1. **Saltar**
 
-   * Cortometraje documental — 18 min
+   - Cortometraje documental — 18 min
 
 2. **Los trazos que quedan de ti**
 
-   * Cortometraje documental — 24 min
+   - Cortometraje documental — 24 min
 
 3. **Breves anotaciones sobre una ruptura**
 
-   * Cortometraje de ficción — 9 min
+   - Cortometraje de ficción — 9 min
 
 ## Otros proyectos
 
 4. **Una mujer que conocí llamada Yudita**
 
-   * Cortometraje documental — 19 min
+   - Cortometraje documental — 19 min
 
 5. **Soledá**
 
-   * Cortometraje de ficción — 15 min
+   - Cortometraje de ficción — 15 min
 
 6. **In-migración**
 
-   * Cabecera para el festival MUSOC edición 2025
+   - Cabecera para el festival MUSOC edición 2025
 
 ---
 
@@ -324,10 +324,10 @@ The architecture remains compatible with multiple featured projects and a future
 
 The hero contains:
 
-* Project image
-* Project type / duration
-* Project title
-* Link to the corresponding project detail
+- Project image
+- Project type / duration
+- Project title
+- Link to the corresponding project detail
 
 The project title provides the primary `h1` context of the homepage.
 
@@ -376,17 +376,17 @@ Displays the three main films:
 
 Each project listing includes:
 
-* Project image
-* Project title
-* Listing description
-* Link to the project detail page
+- Project image
+- Project title
+- Listing description
+- Link to the project detail page
 
 The listing uses the reusable `ProjectCard` component.
 
 The current layout uses:
 
-* Single column on mobile
-* Two-column editorial grid on medium and larger screens
+- Single column on mobile
+- Two-column editorial grid on medium and larger screens
 
 ---
 
@@ -476,12 +476,12 @@ Not every project necessarily contains every section.
 
 ## Project Hero
 
-* Large hero image
-* Strong visual impact
-* Responsive Cloudinary delivery
-* High-priority image loading
-* Editorial presentation
-* Responsive behavior based on viewport aspect ratio
+- Large hero image
+- Strong visual impact
+- Responsive Cloudinary delivery
+- High-priority image loading
+- Editorial presentation
+- Responsive behavior based on viewport aspect ratio
 
 ### Hero responsive behavior
 
@@ -508,16 +508,16 @@ This prevents panoramic cinematic frames from being unnecessarily cropped on tab
 
 Depending on the project, the page can contain:
 
-* Project title
-* Type / duration
-* Synopsis
-* Credits
-* Screenings / awards
-* Funding
-* Production
-* External links
-* Trailer
-* Gallery
+- Project title
+- Type / duration
+- Synopsis
+- Credits
+- Screenings / awards
+- Funding
+- Production
+- External links
+- Trailer
+- Gallery
 
 The component renders sections conditionally according to the available project data.
 
@@ -583,8 +583,8 @@ Some projects contain additional image groups.
 
 For example, **Saltar** includes:
 
-* Funding
-* Production
+- Funding
+- Production
 
 These are represented independently from the main gallery:
 
@@ -608,22 +608,22 @@ src/data/projects.ts
 
 The project model contains:
 
-* `id`
-* `slug`
-* `category`
-* `title`
-* `listingDescription`
-* `heroImage`
-* `poster`
-* `synopsis`
-* `credits`
-* `screenings`
-* `funding`
-* `production`
-* `links`
-* `trailer`
-* `gallery`
-* optional `homeImage`
+- `id`
+- `slug`
+- `category`
+- `title`
+- `listingDescription`
+- `heroImage`
+- `poster`
+- `synopsis`
+- `credits`
+- `screenings`
+- `funding`
+- `production`
+- `links`
+- `trailer`
+- `gallery`
+- optional `homeImage`
 
 The project data is intentionally separated from presentation logic.
 
@@ -834,17 +834,13 @@ The current implementation follows a production-oriented image loading strategy.
 Hero images use:
 
 ```html
-fetchPriority="high"
-loading="eager"
-decoding="async"
+fetchPriority="high" loading="eager" decoding="async"
 ```
 
 The Bio portrait is also treated as an above-the-fold image and currently uses:
 
 ```html
-loading="eager"
-fetchPriority="high"
-decoding="async"
+loading="eager" fetchPriority="high" decoding="async"
 ```
 
 ## Below-the-fold images
@@ -852,8 +848,7 @@ decoding="async"
 Project cards, posters and galleries use:
 
 ```html
-loading="lazy"
-decoding="async"
+loading="lazy" decoding="async"
 ```
 
 ## Responsive image delivery
@@ -908,12 +903,12 @@ Desktop:
 
 The layout uses:
 
-* Portrait on the left
-* Biography on the right
-* Location and professional roles below the image
-* Social links below the profile information
-* Filmography and Contacto contextual navigation
-* Footer shared with the rest of the site
+- Portrait on the left
+- Biography on the right
+- Location and professional roles below the image
+- Social links below the profile information
+- Filmography and Contacto contextual navigation
+- Footer shared with the rest of the site
 
 ## Mobile behavior
 
@@ -939,14 +934,14 @@ The Filmografía and Contacto links are intentionally moved below the complete b
 
 The Bio page contains the real professional biography supplied for the portfolio, including:
 
-* Education
-* Fiction and documentary work
-* Festival participation
-* Awards / mentions
-* Collaborations
-* Cultural programming
-* CIME-Cine, memoria y género
-* Current development project
+- Education
+- Fiction and documentary work
+- Festival participation
+- Awards / mentions
+- Collaborations
+- Cultural programming
+- CIME-Cine, memoria y género
+- Current development project
 
 No fictional clients, services or generic template content is used.
 
@@ -960,14 +955,14 @@ alt="Lía Lugilde, directora, guionista, montadora y programadora"
 
 The page uses:
 
-* One primary `h1`
-* Semantic paragraphs
-* `figure` / `figcaption`
-* Semantic internal `Link` navigation
-* Accessible social navigation
-* Visible keyboard focus states
-* Decorative arrows marked with `aria-hidden`
-* Responsive text and layout
+- One primary `h1`
+- Semantic paragraphs
+- `figure` / `figcaption`
+- Semantic internal `Link` navigation
+- Accessible social navigation
+- Visible keyboard focus states
+- Decorative arrows marked with `aria-hidden`
+- Responsive text and layout
 
 ---
 
@@ -977,23 +972,23 @@ Accessibility is being incorporated throughout the production-readiness pass.
 
 Current practices include:
 
-* Semantic `<h1>` / `<h2>` / `<h3>` hierarchy
-* `aria-labelledby` where useful
-* `aria-label` where appropriate
-* Decorative elements marked with `aria-hidden`
-* Meaningful project links
-* Semantic React Router `<Link>` navigation
-* Keyboard-accessible navigation
-* Visible `focus-visible` states
-* Appropriate image `alt` behavior
-* External-link context for new tabs
-* Mobile navigation with `aria-expanded`
-* Mobile navigation with `aria-controls`
-* Prevention of background scrolling while the mobile menu is open
-* Sufficient text/background contrast
-* Responsive layouts for mobile, tablet and desktop
-* Decorative visual elements prevented from intercepting pointer interaction where appropriate
-* Semantic `<figure>` / `<figcaption>` where appropriate on image-led content
+- Semantic `<h1>` / `<h2>` / `<h3>` hierarchy
+- `aria-labelledby` where useful
+- `aria-label` where appropriate
+- Decorative elements marked with `aria-hidden`
+- Meaningful project links
+- Semantic React Router `<Link>` navigation
+- Keyboard-accessible navigation
+- Visible `focus-visible` states
+- Appropriate image `alt` behavior
+- External-link context for new tabs
+- Mobile navigation with `aria-expanded`
+- Mobile navigation with `aria-controls`
+- Prevention of background scrolling while the mobile menu is open
+- Sufficient text/background contrast
+- Responsive layouts for mobile, tablet and desktop
+- Decorative visual elements prevented from intercepting pointer interaction where appropriate
+- Semantic `<figure>` / `<figcaption>` where appropriate on image-led content
 
 The project avoids adding ARIA where native HTML semantics already provide the required behavior.
 
@@ -1055,15 +1050,15 @@ The final cookie inventory is intentionally postponed until the website is fully
 
 The production audit will verify:
 
-* Actual cookies
-* Third-party cookies
-* Cookie purposes
-* Cookie duration
-* Cloudinary behavior
-* Form/contact service behavior
-* Analytics, if eventually introduced
-* Other third-party services
-* Whether any non-essential cookies require a consent mechanism
+- Actual cookies
+- Third-party cookies
+- Cookie purposes
+- Cookie duration
+- Cloudinary behavior
+- Form/contact service behavior
+- Analytics, if eventually introduced
+- Other third-party services
+- Whether any non-essential cookies require a consent mechanism
 
 The current policy therefore avoids inventing specific cookie names or providers before they have been verified in the final production environment.
 
@@ -1083,13 +1078,13 @@ It documents the accessibility approach and current implementation without claim
 
 The global `Footer` component provides:
 
-* Contact information
-* Social links
-* Vimeo
-* Copyright
-* Legal navigation
-* Back-to-top control
-* Website attribution
+- Contact information
+- Social links
+- Vimeo
+- Copyright
+- Legal navigation
+- Back-to-top control
+- Website attribution
 
 Current legal links:
 
@@ -1119,25 +1114,25 @@ Route:
 
 The contact page provides:
 
-* Contact email
-* Contact form
-* Name field
-* Email field
-* Message field
-* Privacy acknowledgement
-* Social links
-* Vimeo
-* Location information
+- Contact email
+- Contact form
+- Name field
+- Email field
+- Message field
+- Privacy acknowledgement
+- Social links
+- Vimeo
+- Location information
 
 The form is designed with accessibility in mind, including:
 
-* Explicit labels
-* Validation messaging
-* Accessible status feedback
-* Focus states
-* Keyboard navigation
-* `aria-describedby` where appropriate
-* `aria-busy` during submission
+- Explicit labels
+- Validation messaging
+- Accessible status feedback
+- Focus states
+- Keyboard navigation
+- `aria-describedby` where appropriate
+- `aria-busy` during submission
 
 The form uses an external form-processing service rather than a custom backend.
 
@@ -1149,14 +1144,14 @@ The final production configuration and privacy/cookie implications of the form s
 
 The project is built using:
 
-* React
-* TypeScript
-* Vite
-* Tailwind CSS
-* shadcn/ui where appropriate
-* React Router
-* Framer Motion
-* Cloudinary
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- shadcn/ui where appropriate
+- React Router
+- Framer Motion
+- Cloudinary
 
 The application follows a separation between:
 
@@ -1283,12 +1278,12 @@ src/index.css
 
 It contains:
 
-* Tailwind directives
-* Design tokens
-* Global typography
-* Base styles
-* Reusable layout utilities
-* Editorial helper classes
+- Tailwind directives
+- Design tokens
+- Global typography
+- Base styles
+- Reusable layout utilities
+- Editorial helper classes
 
 The original stylesheet is being preserved temporarily as:
 
@@ -1372,21 +1367,21 @@ The project should be tested at multiple viewport sizes.
 
 Before considering a page complete, verify:
 
-* Desktop
-* Tablet
-* Mobile
-* Navigation behavior
-* Keyboard navigation
-* Image loading
-* Cloudinary transformations
-* Typography
-* Spacing
-* Project navigation
-* External links
-* Trailer behavior
-* Responsive layout
-* Legal links
-* Console errors
+- Desktop
+- Tablet
+- Mobile
+- Navigation behavior
+- Keyboard navigation
+- Image loading
+- Cloudinary transformations
+- Typography
+- Spacing
+- Project navigation
+- External links
+- Trailer behavior
+- Responsive layout
+- Legal links
+- Console errors
 
 ---
 
@@ -1420,12 +1415,12 @@ The portfolio should feel like an audiovisual author's website, not a SaaS dashb
 
 Avoid unnecessary:
 
-* Cards
-* Badges
-* Shadows
-* Gradients
-* Decorative components
-* Generic UI patterns
+- Cards
+- Badges
+- Shadows
+- Gradients
+- Decorative components
+- Generic UI patterns
 
 The content, typography, spacing and imagery should carry the experience.
 
@@ -1459,59 +1454,59 @@ Do not copy generic legal templates or third-party service assumptions without v
 
 ## Completed
 
-* [x] React / TypeScript project setup
-* [x] React Router architecture
-* [x] Real Lía Lugilde project data
-* [x] Six projects added
-* [x] `filmes` / `otros-proyectos` categories
-* [x] Listing descriptions
-* [x] Synopsis
-* [x] Credits
-* [x] Screenings
-* [x] External links
-* [x] Vimeo / YouTube trailer support
-* [x] Cloudinary image assets uploaded
-* [x] Cloudinary public IDs added to `projects.ts`
-* [x] Responsive image model simplified
-* [x] Legacy image URL assumptions removed from project data
-* [x] Homepage implemented
-* [x] Homepage cinematic hero
-* [x] Dedicated `homeImage` support with `heroImage` fallback
-* [x] Filmes page implemented
-* [x] Otros proyectos page implemented
-* [x] Project detail page implemented
-* [x] All six project detail routes tested
-* [x] Reusable `ProjectCard`
-* [x] Responsive project grids
-* [x] Responsive Cloudinary `srcSet`
-* [x] Basic image loading optimization
-* [x] Basic accessibility improvements
-* [x] Page transitions
-* [x] Scroll restoration between routes
-* [x] Category-aware project URLs
-* [x] Global circular Next Project navigation
-* [x] Cross-category project navigation
-* [x] Hero responsive behavior based on viewport aspect ratio
-* [x] Navbar overlay mode for hero pages
-* [x] Solid Navbar mode for non-hero pages
-* [x] Responsive mobile navigation
-* [x] Keyboard focus states in navigation and project links
-* [x] Contact page structure and accessible contact form
-* [x] Bio page implemented
-* [x] Real biography content integrated
-* [x] Bio Cloudinary portrait
-* [x] Responsive Bio editorial layout
-* [x] Bio social navigation
-* [x] Bio contextual Filmografía / Contacto navigation
-* [x] Mobile-specific Bio navigation placement
-* [x] Aviso legal page
-* [x] Política de privacidad page
-* [x] Política de cookies V1
-* [x] Accesibilidad V1
-* [x] Legal/informational routes
-* [x] Footer legal navigation
-* [x] Footer decorative interaction fix
-* [x] Global legal/informational page layout consistency
+- [x] React / TypeScript project setup
+- [x] React Router architecture
+- [x] Real Lía Lugilde project data
+- [x] Six projects added
+- [x] `filmes` / `otros-proyectos` categories
+- [x] Listing descriptions
+- [x] Synopsis
+- [x] Credits
+- [x] Screenings
+- [x] External links
+- [x] Vimeo / YouTube trailer support
+- [x] Cloudinary image assets uploaded
+- [x] Cloudinary public IDs added to `projects.ts`
+- [x] Responsive image model simplified
+- [x] Legacy image URL assumptions removed from project data
+- [x] Homepage implemented
+- [x] Homepage cinematic hero
+- [x] Dedicated `homeImage` support with `heroImage` fallback
+- [x] Filmes page implemented
+- [x] Otros proyectos page implemented
+- [x] Project detail page implemented
+- [x] All six project detail routes tested
+- [x] Reusable `ProjectCard`
+- [x] Responsive project grids
+- [x] Responsive Cloudinary `srcSet`
+- [x] Basic image loading optimization
+- [x] Basic accessibility improvements
+- [x] Page transitions
+- [x] Scroll restoration between routes
+- [x] Category-aware project URLs
+- [x] Global circular Next Project navigation
+- [x] Cross-category project navigation
+- [x] Hero responsive behavior based on viewport aspect ratio
+- [x] Navbar overlay mode for hero pages
+- [x] Solid Navbar mode for non-hero pages
+- [x] Responsive mobile navigation
+- [x] Keyboard focus states in navigation and project links
+- [x] Contact page structure and accessible contact form
+- [x] Bio page implemented
+- [x] Real biography content integrated
+- [x] Bio Cloudinary portrait
+- [x] Responsive Bio editorial layout
+- [x] Bio social navigation
+- [x] Bio contextual Filmografía / Contacto navigation
+- [x] Mobile-specific Bio navigation placement
+- [x] Aviso legal page
+- [x] Política de privacidad page
+- [x] Política de cookies V1
+- [x] Accesibilidad V1
+- [x] Legal/informational routes
+- [x] Footer legal navigation
+- [x] Footer decorative interaction fix
+- [x] Global legal/informational page layout consistency
 
 ---
 
@@ -1523,14 +1518,14 @@ The main content pages are now implemented.
 
 The remaining work is primarily focused on:
 
-* Final Contact configuration
-* Global visual refinement
-* Global CSS cleanup
-* SEO
-* Production cookie audit
-* Final accessibility/performance audit
-* Legal verification
-* Final QA
+- Final Contact configuration
+- Global visual refinement
+- Global CSS cleanup
+- SEO
+- Production cookie audit
+- Final accessibility/performance audit
+- Legal verification
+- Final QA
 
 ---
 
@@ -1538,67 +1533,67 @@ The remaining work is primarily focused on:
 
 ### Bio
 
-* [x] Final Bio page implemented
-* [x] Real biography content added
-* [x] Cloudinary portrait added
-* [x] Final editorial composition defined
-* [x] Desktop responsive layout
-* [x] Mobile responsive layout
-* [x] Social links
-* [x] Filmografía navigation
-* [x] Contacto navigation
-* [x] Accessibility-focused implementation
+- [x] Final Bio page implemented
+- [x] Real biography content added
+- [x] Cloudinary portrait added
+- [x] Final editorial composition defined
+- [x] Desktop responsive layout
+- [x] Mobile responsive layout
+- [x] Social links
+- [x] Filmografía navigation
+- [x] Contacto navigation
+- [x] Accessibility-focused implementation
 
 ### Contacto
 
-* [x] Contact page implemented
-* [x] Contact form structure implemented
-* [x] Accessibility-focused form implementation
-* [ ] Final form service configuration
-* [ ] Final privacy/data-processing verification
-* [ ] Responsive QA
-* [ ] Accessibility QA
+- [x] Contact page implemented
+- [x] Contact form structure implemented
+- [x] Accessibility-focused form implementation
+- [ ] Final form service configuration
+- [ ] Final privacy/data-processing verification
+- [ ] Responsive QA
+- [ ] Accessibility QA
 
 ---
 
 ## 2. Global shell
 
-* [x] Review `Navbar.tsx`
-* [x] Review fixed/floating behavior
-* [x] Hero overlay behavior
-* [x] Solid behavior on non-hero pages
-* [x] Desktop navigation
-* [x] Mobile navigation
-* [x] Keyboard accessibility
-* [x] Focus states
-* [x] Footer legal navigation
-* [x] Footer decorative interaction behavior
-* [ ] Final responsive spacing review
+- [x] Review `Navbar.tsx`
+- [x] Review fixed/floating behavior
+- [x] Hero overlay behavior
+- [x] Solid behavior on non-hero pages
+- [x] Desktop navigation
+- [x] Mobile navigation
+- [x] Keyboard accessibility
+- [x] Focus states
+- [x] Footer legal navigation
+- [x] Footer decorative interaction behavior
+- [ ] Final responsive spacing review
 
 ---
 
 ## 3. Legal and informational pages
 
-* [x] Aviso legal
-* [x] Política de privacidad
-* [x] Política de cookies V1
-* [x] Declaración de accesibilidad V1
-* [x] Footer links
-* [ ] Final production cookie audit
-* [ ] Final privacy review against actual production services
-* [ ] Final accessibility audit
-* [ ] Update legal pages if production services change
+- [x] Aviso legal
+- [x] Política de privacidad
+- [x] Política de cookies V1
+- [x] Declaración de accesibilidad V1
+- [x] Footer links
+- [ ] Final production cookie audit
+- [ ] Final privacy review against actual production services
+- [ ] Final accessibility audit
+- [ ] Update legal pages if production services change
 
 ---
 
 ## 4. Global styles
 
-* [x] Review `main.tsx`
-* [x] Review `App.tsx`
-* [ ] Finalize `index.css`
-* [ ] Remove obsolete `App.css`
-* [x] Preserve original CSS temporarily as `index.backup.css`
-* [ ] Audit unused design tokens/utilities
+- [x] Review `main.tsx`
+- [x] Review `App.tsx`
+- [ ] Finalize `index.css`
+- [ ] Remove obsolete `App.css`
+- [x] Preserve original CSS temporarily as `index.backup.css`
+- [ ] Audit unused design tokens/utilities
 
 ---
 
@@ -1606,18 +1601,18 @@ The remaining work is primarily focused on:
 
 After all pages are functionally complete:
 
-* [ ] Typography scale
-* [ ] Font weights
-* [ ] Line heights
-* [ ] Section spacing
-* [ ] Horizontal padding
-* [ ] Image proportions
-* [ ] Mobile spacing
-* [ ] Tablet spacing
-* [ ] Desktop spacing
-* [ ] Navigation proportions
-* [ ] Footer proportions
-* [ ] Cross-page visual consistency
+- [ ] Typography scale
+- [ ] Font weights
+- [ ] Line heights
+- [ ] Section spacing
+- [ ] Horizontal padding
+- [ ] Image proportions
+- [ ] Mobile spacing
+- [ ] Tablet spacing
+- [ ] Desktop spacing
+- [ ] Navigation proportions
+- [ ] Footer proportions
+- [ ] Cross-page visual consistency
 
 Visual refinement should remain faithful to the established reference rather than introducing a new design direction.
 
@@ -1629,26 +1624,26 @@ SEO is intentionally postponed until the page structure is finalized.
 
 Planned work:
 
-* [ ] Reusable `SEO.tsx` component
-* [ ] Document title
-* [ ] Meta description
-* [ ] Canonical URLs
-* [ ] Open Graph metadata
-* [ ] Twitter/X metadata where appropriate
-* [x] Per-project metadata foundation
-* [ ] Global metadata strategy
-* [ ] Bio metadata
-* [ ] Home metadata
-* [ ] Filmes metadata
-* [ ] Otros proyectos metadata
-* [ ] Contacto metadata
-* [ ] Legal/informational page metadata
-* [ ] 404 metadata
-* [ ] Semantic heading audit
-* [ ] `robots.txt`
-* [ ] Sitemap
-* [ ] Structured metadata where justified
-* [ ] Social sharing previews
+- [ ] Reusable `SEO.tsx` component
+- [ ] Document title
+- [ ] Meta description
+- [ ] Canonical URLs
+- [ ] Open Graph metadata
+- [ ] Twitter/X metadata where appropriate
+- [x] Per-project metadata foundation
+- [ ] Global metadata strategy
+- [ ] Bio metadata
+- [ ] Home metadata
+- [ ] Filmes metadata
+- [ ] Otros proyectos metadata
+- [ ] Contacto metadata
+- [ ] Legal/informational page metadata
+- [ ] 404 metadata
+- [ ] Semantic heading audit
+- [ ] `robots.txt`
+- [ ] Sitemap
+- [ ] Structured metadata where justified
+- [ ] Social sharing previews
 
 SEO should be implemented as a reusable strategy rather than through isolated metadata logic duplicated across individual pages.
 
@@ -1660,16 +1655,16 @@ This audit is intentionally postponed until the site is fully deployed.
 
 Final production inspection should verify:
 
-* Cookies actually set by the website
-* Third-party requests
-* Cloudinary behavior
-* Form-processing service behavior
-* Analytics, if introduced
-* Local/session storage where relevant
-* Cookie duration
-* Cookie purpose
-* Whether any cookies are non-essential
-* Whether a consent mechanism is required
+- Cookies actually set by the website
+- Third-party requests
+- Cloudinary behavior
+- Form-processing service behavior
+- Analytics, if introduced
+- Local/session storage where relevant
+- Cookie duration
+- Cookie purpose
+- Whether any cookies are non-essential
+- Whether a consent mechanism is required
 
 The cookie policy should then be updated to match the actual production behavior.
 
@@ -1681,25 +1676,25 @@ The site already incorporates accessibility practices during development.
 
 The final audit should verify:
 
-* Keyboard navigation
-* Focus order
-* Focus visibility
-* Heading hierarchy
-* Accessible names
-* Form labels and errors
-* Image alternatives
-* Contrast
-* Responsive text
-* Reflow
-* Interactive controls
-* Mobile navigation
-* External links
-* Motion/transition behavior
-* Screen-reader behavior
-* Route transitions
-* Legal/informational pages
-* Bio page
-* Contact page
+- Keyboard navigation
+- Focus order
+- Focus visibility
+- Heading hierarchy
+- Accessible names
+- Form labels and errors
+- Image alternatives
+- Contrast
+- Responsive text
+- Reflow
+- Interactive controls
+- Mobile navigation
+- External links
+- Motion/transition behavior
+- Screen-reader behavior
+- Route transitions
+- Legal/informational pages
+- Bio page
+- Contact page
 
 The accessibility statement should be updated after this review if necessary.
 
@@ -1707,21 +1702,21 @@ The accessibility statement should be updated after this review if necessary.
 
 ## 9. Final QA
 
-* [ ] Production build
-* [ ] Console error audit
-* [ ] Broken link audit
-* [ ] Image loading audit
-* [ ] Mobile QA
-* [ ] Tablet QA
-* [ ] Desktop QA
-* [ ] Keyboard navigation QA
-* [ ] Accessibility review
-* [ ] Performance review
-* [ ] SEO review
-* [ ] Cookie audit
-* [ ] Privacy/legal review
-* [ ] Final visual comparison against reference
-* [ ] GitHub Pages production verification
+- [ ] Production build
+- [ ] Console error audit
+- [ ] Broken link audit
+- [ ] Image loading audit
+- [ ] Mobile QA
+- [ ] Tablet QA
+- [ ] Desktop QA
+- [ ] Keyboard navigation QA
+- [ ] Accessibility review
+- [ ] Performance review
+- [ ] SEO review
+- [ ] Cookie audit
+- [ ] Privacy/legal review
+- [ ] Final visual comparison against reference
+- [ ] GitHub Pages production verification
 
 ---
 

@@ -114,6 +114,12 @@ export const projects: Project[] = [
       "Estrenado en Festival Internacional de Cine de Gijón FICX 63",
       "Proyectado en Oriéntate Llanes",
       "Corto inaugural CortoGijón XII",
+      "Estreno Internacional en Sección Internacional de Baleine Festival (Francia)",
+      "Proyectado en el Festival Europeo de Cortometrajes, Villamayor de Cine",
+      "Proyectado en Patrofest Festival de Curtmetratges de Premià de Mar",
+      "Proyectado en 8th edition of MedFest Egypt Film Festival (Egipto)",
+      "Proyectado en el 25 Avilés Acción FIlm Festival (Octubre 2026)",
+      "Proyectado en Nexos, Bogoshorts (Colombia)",
     ],
 
     funding: [
@@ -138,6 +144,10 @@ export const projects: Project[] = [
       {
         label: "Entrevista CineFilm",
         url: "https://cinefilm.es/entrevista-a-lia-lugilde-por-saltar-2025-especial/",
+      },
+      {
+        label: "Entrevista PIECES",
+        url: "https://www.facebook.com/watch/?v=1383122876310563",
       },
     ],
 
@@ -209,11 +219,11 @@ export const projects: Project[] = [
     ],
 
     screenings: [
-      "MENCIÓN ESPECIAL RTPA – Festival Internacional de Cine de Gijón FICX 61",
-      "MEJOR CORTOMETRAJE DOCUMENTAL – CortoGijon 10º",
+      "MENCIÓN ESPECIAL RTPA - Festival Internacional de Cine de Gijón FICX 61",
+      "MEJOR CORTOMETRAJE DOCUMENTAL - CortoGijon 10º",
       "Cortometraje incluido en el Catálogo de distribución Laboral Cinemateca",
-      "HONOURABLE MENTION for Best Short Doc – Sevilla Indie Film Festival 2024",
-      "PREMIO ASTURIAS JOVEN – Cortoviedo 2024",
+      "HONOURABLE MENTION for Best Short Doc - Sevilla Indie Film Festival 2024",
+      "PREMIO ASTURIAS JOVEN - Cortoviedo 2024",
       "Proyectado en la sección Arraianos en Conecta Lab de Crea 2024",
       "Proyectado en FESTIVAL DE CINE BEGIRADAK 2024",
       "Proyectado en el Festival de Cine de Ribadesella",
@@ -229,6 +239,10 @@ export const projects: Project[] = [
       {
         label: "Laboral Cinemateca",
         url: "https://www.laboralcinemateca.es/archivo-de-cortos/-/asset_publisher/vncsKJpqHgRM/content/id/4087958/maximized",
+      },
+      {
+        label: "Entrevista PIECES",
+        url: "https://www.facebook.com/watch/?v=900914318358984",
       },
     ],
 
@@ -254,7 +268,7 @@ export const projects: Project[] = [
     slug: "breves-anotaciones-sobre-una-ruptura",
     category: "filmes",
 
-    title: "BREVES ANOTACIONES SOBRE UNA RUPTURA",
+    title: "Breves anotaciones sobre una ruptura",
 
     listingDescription: "Cortometraje de ficción - 9 min",
 
@@ -348,6 +362,11 @@ export const projects: Project[] = [
       sizes: "100vw",
     },
 
+    homeImage: {
+      publicId: "fotograma-1-yudita",
+      sizes: "100vw",
+    },
+
     poster: {
       publicId: "cartel-yudita",
       sizes: "(min-width: 1024px) 50vw, 100vw",
@@ -421,12 +440,17 @@ export const projects: Project[] = [
     slug: "soleda",
     category: "otros-proyectos",
 
-    title: "SOLEDÁ",
+    title: "Soledá",
 
     listingDescription: "Cortometraje ficción - 15 min",
 
     heroImage: {
       publicId: "hero-soleda",
+      sizes: "100vw",
+    },
+
+    homeImage: {
+      publicId: "fotograma-1-soleda",
       sizes: "100vw",
     },
 
@@ -516,12 +540,17 @@ export const projects: Project[] = [
     slug: "in-migracion",
     category: "otros-proyectos",
 
-    title: "IN-MIGRACIÓN",
+    title: "In-migración",
 
     listingDescription: "Cabecera para el festival MUSOC edición 2025.",
 
     heroImage: {
       publicId: "hero-inmigracion",
+      sizes: "100vw",
+    },
+
+    homeImage: {
+      publicId: "fotograma-1-inmigracion",
       sizes: "100vw",
     },
 
