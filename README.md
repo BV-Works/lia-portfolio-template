@@ -97,19 +97,19 @@ Image delivery uses automatic format and quality transformations, responsive siz
 
 The application uses React Router with the following route structure:
 
-| Route | Page |
-|---|---|
-| `/` | Homepage |
-| `/filmes` | Films |
-| `/filmes/:slug` | Film detail |
-| `/otros-proyectos` | Other projects |
-| `/otros-proyectos/:slug` | Project detail |
-| `/bio` | Biography |
-| `/contacto` | Contact |
-| `/politica-de-privacidad` | Privacy policy |
-| `/politica-de-cookies` | Cookie policy |
-| `/aviso-legal` | Legal notice |
-| `/accesibilidad` | Accessibility statement |
+| Route                     | Page                    |
+| ------------------------- | ----------------------- |
+| `/`                       | Homepage                |
+| `/filmes`                 | Films                   |
+| `/filmes/:slug`           | Film detail             |
+| `/otros-proyectos`        | Other projects          |
+| `/otros-proyectos/:slug`  | Project detail          |
+| `/bio`                    | Biography               |
+| `/contacto`               | Contact                 |
+| `/politica-de-privacidad` | Privacy policy          |
+| `/politica-de-cookies`    | Cookie policy           |
+| `/aviso-legal`            | Legal notice            |
+| `/accesibilidad`          | Accessibility statement |
 
 Project detail pages share a single reusable component and preserve the project category in their URLs.
 
