@@ -1,7 +1,3 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
@@ -20,13 +16,11 @@ import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import PageTransition from "./components/PageTransition";
 
-const queryClient = new QueryClient();
-
 const AnimatedRoutes = () => {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="sync">
       <Routes location={location} key={location.pathname}>
         {/* Homepage */}
         <Route
@@ -154,17 +148,10 @@ const AnimatedRoutes = () => {
 };
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
-        <ScrollToTop />
-        <AnimatedRoutes />
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <ScrollToTop />
+    <AnimatedRoutes />
+  </BrowserRouter>
 );
 
 export default App;

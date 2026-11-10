@@ -118,7 +118,7 @@ export const projects: Project[] = [
       "Proyectado en el Festival Europeo de Cortometrajes, Villamayor de Cine",
       "Proyectado en Patrofest Festival de Curtmetratges de Premià de Mar",
       "Proyectado en 8th edition of MedFest Egypt Film Festival (Egipto)",
-      "Proyectado en el 25 Avilés Acción FIlm Festival (Octubre 2026)",
+      "Proyectado en el 25 Avilés Acción FIlm Festival (2026)",
       "Proyectado en Nexos, Bogoshorts (Colombia)",
     ],
 
@@ -363,7 +363,7 @@ export const projects: Project[] = [
     },
 
     homeImage: {
-      publicId: "fotograma-1-yudita",
+      publicId: "fotograma-3-yudita",
       sizes: "100vw",
     },
 
@@ -450,7 +450,7 @@ export const projects: Project[] = [
     },
 
     homeImage: {
-      publicId: "fotograma-1-soleda",
+      publicId: "fotograma-3-soleda",
       sizes: "100vw",
     },
 
@@ -550,7 +550,7 @@ export const projects: Project[] = [
     },
 
     homeImage: {
-      publicId: "fotograma-1-inmigracion",
+      publicId: "fotograma-3-inmigracion",
       sizes: "100vw",
     },
 
