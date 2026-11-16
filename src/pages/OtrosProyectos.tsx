@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import ProjectCard from "@/components/ProjectCard";
 import AnimatedSection from "@/components/AnimatedSection";
 import { projects } from "@/data/projects";
-
+import SEO from "@/components/SEO";
 const OtrosProyectos = () => {
   const otrosProyectos = projects.filter(
     (project) => project.category === "otros-proyectos",
@@ -11,6 +11,10 @@ const OtrosProyectos = () => {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Otros proyectos"
+        description="Otros proyectos audiovisuales de Lía Lugilde: piezas, trabajos y colaboraciones fuera de su filmografía."
+      />
       <Navbar />
 
       <section

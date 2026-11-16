@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 
 import { projects } from "@/data/projects";
 import { getCloudinaryUrl } from "@/lib/cloudinary";
-
+import SEO from "@/components/SEO";
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -48,6 +48,11 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <SEO
+        description="Portfolio oficial de Lía Lugilde, directora, guionista y montadora audiovisual afincada en Gijón, Asturias. Descubre su filmografía, cortometrajes y proyectos audiovisuales."
+        image={getCloudinaryUrl(homeImage, 1200)}
+        imageAlt="SALTAR, cortometraje de Lía Lugilde"
+      />
       <Navbar overlay />
 
       {/* =========================================================

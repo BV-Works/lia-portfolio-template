@@ -1,10 +1,16 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
+import SEO from "@/components/SEO";
 
 const PoliticaPrivacidad = () => {
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Política de privacidad"
+        description="Información sobre el tratamiento de datos personales, finalidades, derechos y protección de datos en el sitio web de Lía Lugilde."
+        noindex
+      />
       <Navbar />
 
       <section

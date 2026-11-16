@@ -1,10 +1,16 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
+import SEO from "@/components/SEO";
 
 const PoliticaCookies = () => {
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Política de cookies"
+        description="Información sobre el uso de cookies y tecnologías similares en el sitio web de Lía Lugilde."
+        noindex
+      />
       <Navbar />
 
       <section

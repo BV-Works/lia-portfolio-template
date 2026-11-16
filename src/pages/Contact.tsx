@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
-
+import SEO from "@/components/SEO";
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/REPLACE_WITH_FORM_ID";
 
 interface FormData {
@@ -78,6 +78,10 @@ const Contact = () => {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Contacto"
+        description="Contacta con Lía Lugilde, directora, guionista y montadora audiovisual en Gijón, Asturias. Para propuestas, proyectos y colaboraciones."
+      />
       <Navbar />
 
       {/* Hero */}

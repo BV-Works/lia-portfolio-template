@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
+import SEO from "@/components/SEO";
 const NotFound = () => {
   return (
     <main className="flex min-h-screen items-center justify-center bg-background px-6 text-foreground">
-      {" "}
+      <SEO
+        title="Página no encontrada"
+        description="La página que buscas no existe o ya no está disponible."
+        noindex
+      />{" "}
       <div className="text-center">
         {" "}
         <p className="mb-6 font-sans text-sm uppercase tracking-[0.15em] text-muted-foreground">

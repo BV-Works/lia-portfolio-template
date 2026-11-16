@@ -3,12 +3,16 @@ import Footer from "@/components/Footer";
 import ProjectCard from "@/components/ProjectCard";
 import AnimatedSection from "@/components/AnimatedSection";
 import { projects } from "@/data/projects";
-
+import SEO from "@/components/SEO";
 const Filmes = () => {
   const filmes = projects.filter((project) => project.category === "filmes");
 
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Filmes"
+        description="Filmografía de Lía Lugilde, directora, guionista y montadora audiovisual. Descubre sus cortometrajes documentales y de ficción."
+      />
       <Navbar />
 
       <section

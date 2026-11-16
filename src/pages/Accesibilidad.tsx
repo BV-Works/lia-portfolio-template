@@ -1,10 +1,15 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
-
+import SEO from "@/components/SEO";
 const Accesibilidad = () => {
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Accesibilidad"
+        description="Declaración de accesibilidad del sitio web de Lía Lugilde, medidas implementadas y canales para comunicar incidencias."
+        noindex
+      />
       <Navbar />
 
       <section

@@ -3,10 +3,16 @@ import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
+import SEO from "@/components/SEO";
 
 const AvisoLegal = () => {
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Aviso legal"
+        description="Información legal sobre la titularidad, condiciones de uso, responsabilidad y propiedad intelectual del sitio web de Lía Lugilde."
+        noindex
+      />
       <Navbar />
 
       <section

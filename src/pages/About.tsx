@@ -2,13 +2,19 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Link } from "react-router-dom";
-
+import SEO from "@/components/SEO";
 const bioImage =
   "https://res.cloudinary.com/dwi9l26qx/image/upload/f_auto,q_auto,w_1200/bio-lia.jpg";
 
 const About = () => {
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <SEO
+        title="Bio"
+        description="Conoce la trayectoria de Lía Lugilde, directora, guionista, montadora y programadora audiovisual nacida en Gijón. Su formación, filmografía y recorrido profesional."
+        image={bioImage}
+        imageAlt="Lía Lugilde, directora, guionista, montadora y programadora audiovisual"
+      />
       <Navbar />
 
       <section className="pt-24 pb-20 md:pt-28 md:pb-28">

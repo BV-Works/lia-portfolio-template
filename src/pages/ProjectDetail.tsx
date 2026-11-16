@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import SEO from "@/components/SEO";
 import { useLocation, useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -57,101 +57,6 @@ const ProjectDetail = () => {
 
   /*
    * ============================================================
-   * SEO
-   * ============================================================
-   */
-
-  useEffect(() => {
-    if (!project) {
-      document.title = "Proyecto no encontrado | Lía Lugilde";
-      return;
-    }
-
-    const siteName = "Lía Lugilde";
-    const title = `${project.title} | ${siteName}`;
-
-    /*
-     * Keep the description concise enough for search engines.
-     */
-    const description =
-      project.listingDescription ||
-      project.synopsis ||
-      `${project.title} — proyecto de Lía Lugilde.`;
-
-    document.title = title;
-
-    const setMeta = (
-      selector: string,
-      attribute: "name" | "property",
-      value: string,
-    ) => {
-      let element = document.head.querySelector<HTMLMetaElement>(
-        `meta[${attribute}="${selector}"]`,
-      );
-
-      if (!element) {
-        element = document.createElement("meta");
-        element.setAttribute(attribute, selector);
-        document.head.appendChild(element);
-      }
-
-      element.setAttribute("content", value);
-    };
-
-    /*
-     * Standard description
-     */
-    setMeta("description", "name", description);
-
-    /*
-     * Open Graph
-     */
-    setMeta("og:title", "property", title);
-    setMeta("og:description", "property", description);
-    setMeta(
-      "og:image",
-      "property",
-      getCloudinaryUrl(project.heroImage.publicId, 1536),
-    );
-    setMeta("og:type", "property", "website");
-
-    /*
-     * Twitter / social sharing
-     */
-    setMeta("twitter:card", "name", "summary_large_image");
-    setMeta("twitter:title", "name", title);
-    setMeta("twitter:description", "name", description);
-    setMeta(
-      "twitter:image",
-      "name",
-      getCloudinaryUrl(project.heroImage.publicId, 1536),
-    );
-
-    /*
-     * Canonical URL.
-     *
-     * window.location.pathname contains the real GitHub Pages
-     * base path when deployed, so this also works with:
-     *
-     * /lia-portfolio-template/
-     */
-    const canonicalUrl = `${window.location.origin}${window.location.pathname}`;
-
-    let canonical = document.head.querySelector<HTMLLinkElement>(
-      'link[rel="canonical"]',
-    );
-
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-
-    canonical.href = canonicalUrl;
-  }, [project]);
-
-  /*
-   * ============================================================
    * NOT FOUND
    * ============================================================
    */
@@ -159,6 +64,11 @@ const ProjectDetail = () => {
   if (!project) {
     return (
       <main className="min-h-screen bg-background text-foreground">
+        <SEO
+          title="Proyecto no encontrado"
+          description="El proyecto que buscas no está disponible en el portfolio de Lía Lugilde."
+          noindex
+        />
         <Navbar />
 
         <section
@@ -229,6 +139,12 @@ const ProjectDetail = () => {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <SEO
+        title={project.title}
+        description={project.synopsis}
+        image={getCloudinaryUrl(project.heroImage.publicId, 1200)}
+        imageAlt={`Imagen de ${project.title}, proyecto audiovisual de Lía Lugilde`}
+      />
       <Navbar overlay />
 
       {/* =========================================================
