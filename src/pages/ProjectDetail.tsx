@@ -160,7 +160,7 @@ const ProjectDetail = () => {
           srcSet={heroSrcSet}
           sizes={project.heroImage.sizes}
           alt={`Imagen principal de ${project.title}`}
-          fetchPriority="high"
+          {...{ fetchpriority: "high" }}
           loading="eager"
           decoding="async"
           className="

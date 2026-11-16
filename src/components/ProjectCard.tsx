@@ -50,7 +50,7 @@ const ProjectCard = ({
               src={getCloudinaryUrl(image, 1536)}
               alt={`Fotograma de ${title}`}
               loading={priority ? "eager" : "lazy"}
-              fetchPriority={priority ? "high" : "auto"}
+              {...{ fetchpriority: priority ? "high" : "auto" }}
               decoding="async"
               className="w-full h-full object-cover"
               whileHover={{ scale: 1.03 }}

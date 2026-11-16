@@ -29,7 +29,7 @@ const About = () => {
                   width={1200}
                   height={1500}
                   loading="eager"
-                  fetchPriority="high"
+                  {...{ fetchpriority: "high" }}
                   decoding="async"
                   className="block w-full h-auto object-cover"
                 />

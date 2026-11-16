@@ -78,7 +78,7 @@ const Index = () => {
             <img
               src={getCloudinaryUrl(homeImage, 1920)}
               alt=""
-              fetchPriority="high"
+              {...{ fetchpriority: "high" }}
               loading="eager"
               decoding="async"
               className="w-full h-full object-cover"

@@ -3,12 +3,13 @@ import type { ReactNode } from "react";
 
 interface PageTransitionProps {
   children: ReactNode;
+  hasHydrated: boolean;
 }
 
-const PageTransition = ({ children }: PageTransitionProps) => {
+const PageTransition = ({ children, hasHydrated }: PageTransitionProps) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 4 }}
+      initial={hasHydrated ? { opacity: 0, y: 4 } : false}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 1, y: 0 }}
       transition={{
