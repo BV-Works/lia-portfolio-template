@@ -24,3 +24,8 @@ dist-ssr
 *.sw?
 # TypeScript build info
 *.tsbuildinfo
+
+# Environment variables
+.env
+.env.*
+!.env.example
