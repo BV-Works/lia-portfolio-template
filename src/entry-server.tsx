@@ -1,10 +1,7 @@
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
 import AppRoutes from "./AppRoutes";
-import {
-  SEOContext,
-  type SEOMetadata,
-} from "./context/SEOContext";
+import { SEOContext, type SEOMetadata } from "./context/SEOContext";
 
 interface RenderOptions {
   pathname: string;
@@ -12,6 +9,9 @@ interface RenderOptions {
 
 export const render = ({ pathname }: RenderOptions) => {
   let metadata: SEOMetadata | null = null;
+
+  const basename = import.meta.env.BASE_URL.replace(/\/+$/, "");
+  const location = `${basename}${pathname}`;
 
   const html = renderToString(
     <SEOContext.Provider
@@ -21,7 +21,7 @@ export const render = ({ pathname }: RenderOptions) => {
         },
       }}
     >
-      <StaticRouter location={pathname}>
+      <StaticRouter basename={import.meta.env.BASE_URL} location={location}>
         <AppRoutes />
       </StaticRouter>
     </SEOContext.Provider>,

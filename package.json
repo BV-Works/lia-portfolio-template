@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && tsx scripts/generate-sitemap.ts production",
+    "build": "vite build && tsx scripts/generate-prerender.ts production && tsx scripts/generate-sitemap.ts production",
+    "build:github-pages": "vite build --mode github-pages && tsx scripts/generate-prerender.ts github-pages && tsx scripts/generate-sitemap.ts github-pages",
     "build:dev": "vite build --mode development && tsx scripts/generate-sitemap.ts development",
     "lint": "eslint .",
     "preview": "vite preview",
